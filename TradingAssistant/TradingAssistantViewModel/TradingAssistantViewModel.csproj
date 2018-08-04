@@ -123,6 +123,7 @@
     <EmbeddedResource Include="Docs\CurrentJournalTemplate.xlsx" />
     <EmbeddedResource Include="Docs\HelpDocument.docx" />
     <EmbeddedResource Include="Docs\AccountDefinitionFormat.xlsx" />
+    <EmbeddedResource Include="Docs\TradeLogFormat.xlsx" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Docs\PreviousBalanceSheetTemplate.xlsx" />
   </ItemGroup>

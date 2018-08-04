@@ -10,26 +10,25 @@ namespace Nachiappan.TradingAssistantViewModel
     {
         public InteractionRequest<FileSaveAsNotification> FileSaveAsInteractionRequest { get; private set; }
 
-        public DelegateCommand SaveSampleBalanceSheetCommand { get; set; }
-        public DelegateCommand SaveSampleJournalCommand { get; set; }
+        //public DelegateCommand SaveSampleBalanceSheetCommand { get; set; }
+        //public DelegateCommand SaveSampleJournalCommand { get; set; }
         public DelegateCommand SaveHelpDocumentCommand { get; set; }
-
-        public DelegateCommand SaveAccountDefinitionCommand { get; set; }
+        public DelegateCommand SaveTradeLogFormatCommand { get; set; }
 
 
         public AboutApplicationWorkFlowStepViewModel(Action nextStep)
         {
-            Name = "About Balance Sheet";
+            Name = "About Trading Assistant";
 
             GoToPreviousCommand = new DelegateCommand(() => { }, () => false);
             GoToNextCommand = new DelegateCommand(nextStep, ()=> true);
 
             FileSaveAsInteractionRequest = new InteractionRequest<FileSaveAsNotification>();
 
-            SaveSampleBalanceSheetCommand = new DelegateCommand(SaveSampleBalanceSheet);
-            SaveSampleJournalCommand = new DelegateCommand(SaveJournal);
+            //SaveSampleBalanceSheetCommand = new DelegateCommand(SaveSampleBalanceSheet);
+            //SaveSampleJournalCommand = new DelegateCommand(SaveJournal);
             SaveHelpDocumentCommand = new DelegateCommand(SaveHelpDocument);
-            SaveAccountDefinitionCommand = new DelegateCommand(SaveAccountDefinition);
+            SaveTradeLogFormatCommand = new DelegateCommand(SaveTradeLogFormat);
 
         }
 
@@ -62,14 +61,14 @@ namespace Nachiappan.TradingAssistantViewModel
                 "Nachiappan.TradingAssistantViewModel.Docs.CurrentJournalTemplate.xlsx");
         }
 
-        private void SaveAccountDefinition()
+        private void SaveTradeLogFormat()
         {
 
-            SaveFile("Save Account Definition",
-                "AccountDefinition",
+            SaveFile("Save Trade Log Format",
+                "TradeLog",
                 ".xlsx",
                 "Excel File (.xlsx)|*.xlsx",
-                "Nachiappan.TradingAssistantViewModel.Docs.AccountDefinitionFormat.xlsx");
+                "Nachiappan.TradingAssistantViewModel.Docs.TradeLogFormat.xlsx");
         }
 
         private void SaveFile(string saveFileTitle, string defaultFileName, string outputFileExtention, string filter,

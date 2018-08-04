@@ -42,10 +42,10 @@
 
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
-                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveSampleBalanceSheetCommand}" Content="Download Balance sheet format" Height="24" Width="200"/>
-                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveSampleJournalCommand}" Content="Download Journal format" Height="24" Width="200"/>
-                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveAccountDefinitionCommand}" Content="Download Account definition format" Height="24" Width="200"/>
-                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveHelpDocumentCommand}" Content="Download Help Document" Height="24" Width="200"/>
+                    <!--<Button DockPanel.Dock="Bottom" Command="{Binding SaveSampleBalanceSheetCommand}" Content="Download Balance sheet format" Height="24" Width="200"/>
+                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveSampleJournalCommand}" Content="Download Journal format" Height="24" Width="200"/>-->
+                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveTradeLogFormatCommand}" Content="Get Trade Log Format" Height="24" Width="200"/>
+                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveHelpDocumentCommand}" Content="Get Help Document" Height="24" Width="200"/>
                 </StackPanel>
             </DockPanel>
         </Border>
