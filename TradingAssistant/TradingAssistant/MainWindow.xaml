@@ -8,9 +8,9 @@
         xmlns:statementDisplayingViewModel1="clr-namespace:Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel;assembly=TradingAssistantViewModel"
         d:DataContext="{d:DesignInstance tradingAssistantViewModel:WorkFlowViewModel}"
         mc:Ignorable="d"
-        Icon="if_money_299107.ico"
+        Icon="if_money_47488.ico"
         WindowState="Maximized"
-        Title="Balance Sheet" Height="400" Width="600" MinHeight="400" MinWidth="600">
+        Title="Trading Assistant" Height="400" Width="600" MinHeight="400" MinWidth="600">
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type tradingAssistantViewModel:InputWorkFlowStepViewModel}">

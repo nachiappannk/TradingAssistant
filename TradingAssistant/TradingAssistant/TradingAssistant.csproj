@@ -178,5 +178,8 @@
   <ItemGroup>
     <Resource Include="if_money_299107.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="if_money_47488.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

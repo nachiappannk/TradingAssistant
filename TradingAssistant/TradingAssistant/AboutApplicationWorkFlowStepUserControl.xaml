@@ -34,11 +34,11 @@
         <Border Style="{StaticResource MainBorderStyle}" Grid.Row="1">
             <DockPanel Grid.Row="1" LastChildFill="False">
                 <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
-                    <TextBlock Text="About Balance Sheet" Style="{StaticResource HeadingText}"/>
+                    <TextBlock Text="About Trading Assistant" Style="{StaticResource HeadingText}"/>
                     <TextBlock Style="{StaticResource NormalText}" 
-                        Text="Balance sheet is a software that helps you in creating your balance sheet"/>
+                               TextWrapping="Wrap" Text="Trading Assistant is a software that helps you in maintaing your books related to trading of assets like equity, commodity and mutual funds"/>
                     <TextBlock Style="{StaticResource NormalText}"  
-                        TextWrapping="Wrap" Text="It needs the journal, previous periods balance sheet and account definition for the computation. The formats can be downloaded from below"/>
+                        TextWrapping="Wrap" Text="It needs the trade log for the computation. The format of the file could be got by clicking the below button."/>
 
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
