@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Nachiappan.TradingAssistant.ExcelSheetSelectorUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:excel1="clr-namespace:Nachiappan.TradingAssistantViewModel.Model.Excel;assembly=TradingAssistantViewModel"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance excel1:ExcelSheetSelectorViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DockPanel LastChildFill="False">
+        <TextBlock Style="{StaticResource Level2HeadingText}"
+                   DockPanel.Dock="Top" Text="{Binding Title}"/>
+        <DockPanel  DockPanel.Dock="Top" HorizontalAlignment="Stretch">
+            <TextBlock DockPanel.Dock="Left"
+                       Style="{StaticResource HintText}"
+                       Text="File " VerticalAlignment="Center" />
+            <Button DockPanel.Dock="Right" Margin="4" Height="24" Width="40" Content="Pick" Click="OnPickerButtonClick"/>
+            <TextBox x:Name="FilePicker" IsReadOnly="True" Text="{Binding InputFileName}"  VerticalContentAlignment="Center" 
+                     FontSize="10" Height="24"
+                     HorizontalAlignment="Stretch"/>
+        </DockPanel>
+        <Grid  DockPanel.Dock="Top" HorizontalAlignment="Stretch">
+            <DockPanel LastChildFill="False">
+                <TextBlock DockPanel.Dock="Left"
+                           Text="Sheet " Style="{StaticResource HintText}" VerticalAlignment="Center" />
+                <ComboBox Width="100" 
+                          SelectedValue="{Binding SelectedSheet}" Height="24" ItemsSource="{Binding SheetNames}" />
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</UserControl>

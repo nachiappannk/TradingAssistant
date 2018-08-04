@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Nachiappan.TradingAssistant.AboutApplicationWorkFlowStepUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:interactionRequest="http://prismlibrary.com/"
+             xmlns:tradingAssistant="clr-namespace:Nachiappan.TradingAssistant"
+             xmlns:tradingAssistantViewModel="clr-namespace:Nachiappan.TradingAssistantViewModel;assembly=TradingAssistantViewModel"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance tradingAssistantViewModel:AboutApplicationWorkFlowStepViewModel}"
+             d:DesignHeight="300" d:DesignWidth="700">
+    <Grid>
+        <i:Interaction.Triggers>
+            <interactionRequest:InteractionRequestTrigger SourceObject="{Binding FileSaveAsInteractionRequest}">
+                <tradingAssistant:SaveFileAction/>
+            </interactionRequest:InteractionRequestTrigger>
+        </i:Interaction.Triggers>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Row="0" Style="{StaticResource HeaderStripGrid}">
+            <TextBlock Text="{Binding Name}" Style="{StaticResource HeaderStripText}"></TextBlock>
+        </Grid>
+        <DockPanel Grid.Row="2" Style="{StaticResource FooterStripDockPanel}">
+            <Button Style="{StaticResource FooterStripButton}" Content="Previous" DockPanel.Dock="Left" Command="{Binding GoToPreviousCommand}"/>
+            <Button Style="{StaticResource FooterStripButton}" Content="Next" DockPanel.Dock="Right" Command="{Binding GoToNextCommand}"/>
+        </DockPanel>
+
+        <Border Style="{StaticResource MainBorderStyle}" Grid.Row="1">
+            <DockPanel Grid.Row="1" LastChildFill="False">
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                    <TextBlock Text="About Balance Sheet" Style="{StaticResource HeadingText}"/>
+                    <TextBlock Style="{StaticResource NormalText}" 
+                        Text="Balance sheet is a software that helps you in creating your balance sheet"/>
+                    <TextBlock Style="{StaticResource NormalText}"  
+                        TextWrapping="Wrap" Text="It needs the journal, previous periods balance sheet and account definition for the computation. The formats can be downloaded from below"/>
+
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
+                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveSampleBalanceSheetCommand}" Content="Download Balance sheet format" Height="24" Width="200"/>
+                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveSampleJournalCommand}" Content="Download Journal format" Height="24" Width="200"/>
+                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveAccountDefinitionCommand}" Content="Download Account definition format" Height="24" Width="200"/>
+                    <Button DockPanel.Dock="Bottom" Command="{Binding SaveHelpDocumentCommand}" Content="Download Help Document" Height="24" Width="200"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+    </Grid>
+
+
+
+
+
+</UserControl>
