@@ -26,8 +26,8 @@ namespace Nachiappan.TradingAssistantViewModel
         public static readonly PackageDefinition<List<BalanceSheetStatement>> BalanceSheetStatementsPackageDefinition =
             new PackageDefinition<List<BalanceSheetStatement>>(nameof(BalanceSheetStatementsPackageDefinition));
 
-        public static readonly PackageDefinition<InputForBalanceSheetComputation> InputParametersPackageDefinition = 
-            new PackageDefinition<InputForBalanceSheetComputation>(nameof(InputParametersPackageDefinition));
+        public static readonly PackageDefinition<InputForTradeStatementComputation> InputParametersPackageDefinition = 
+            new PackageDefinition<InputForTradeStatementComputation>(nameof(InputParametersPackageDefinition));
 
         public static readonly PackageDefinition<List<TrialBalanceStatement>> TrialBalanceStatementsPackageDefinition = 
             new PackageDefinition<List<TrialBalanceStatement>>(nameof(TrialBalanceStatementsPackageDefinition));

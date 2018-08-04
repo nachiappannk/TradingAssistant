@@ -71,7 +71,7 @@ namespace Nachiappan.TradingAssistantViewModel
             var logger = new Logger();
 
             var journalStatements = JournalReader.ReadJournalStatements
-                (input.CurrentJournalFileName, input.CurrentJournalSheetName, logger);
+                (input.TradeLogFileName, input.TradeLogSheetName, logger);
 
             var previousBalanceSheetStatements = BalanceSheetReader.ReadBalanceSheetStatements
                 (input.PreviousBalanceSheetFileName, input.PreviousBalanceSheetSheetName, logger);

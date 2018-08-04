@@ -90,7 +90,7 @@
     <Compile Include="Model\Statements\AccountType.cs" />
     <Compile Include="Model\Account\IAccount.cs" />
     <Compile Include="Model\ILogger.cs" />
-    <Compile Include="InputForBalanceSheetComputation.cs" />
+    <Compile Include="InputForTradeStatementComputation.cs" />
     <Compile Include="InputWorkFlowStepViewModel.cs" />
     <Compile Include="Model\Excel\IRowCellsReader.cs" />
     <Compile Include="Model\ExcelGateway\JournalGateway.cs" />

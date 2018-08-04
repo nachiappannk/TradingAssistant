@@ -2,12 +2,12 @@
 
 namespace Nachiappan.TradingAssistantViewModel
 {
-    public class InputForBalanceSheetComputation
+    public class InputForTradeStatementComputation
     {
         public string PreviousBalanceSheetFileName { get; set; }
-        public string CurrentJournalFileName { get; set; }
+        public string TradeLogFileName { get; set; }
         public string PreviousBalanceSheetSheetName { get; set; }
-        public string CurrentJournalSheetName { get; set; }
+        public string TradeLogSheetName { get; set; }
         public string AccountDefinitionFileName { get; set; }
         public string AccountDefintionSheetName { get; set; }
         public DateTime AccountingPeriodStartDate { get; set; }
