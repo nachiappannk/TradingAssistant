@@ -16,15 +16,15 @@ namespace Nachiappan.TradingAssistantViewModel.Model
             var accountPrintableNamesLookup =
                 dataStore.GetPackage(WorkFlowViewModel.DisplayableAccountNamesDictionaryPackageDefinition);
 
-            GeneralAccount generalAccount = new GeneralAccount(input.AccountingPeriodStartDate, input.AccountingPeriodEndDate,
-                previousBalanceSheetStatements, journalStatements, accountDefinitionStatement, accountPrintableNamesLookup);
+            //GeneralAccount generalAccount = new GeneralAccount(input.AccountingPeriodStartDate, input.AccountingPeriodEndDate,
+            //    previousBalanceSheetStatements, journalStatements, accountDefinitionStatement, accountPrintableNamesLookup);
 
 
-            dataStore.PutPackage(generalAccount.GetAllAccounts(), WorkFlowViewModel.AccountsPackageDefinition);
-            dataStore.PutPackage(generalAccount.GetTrialBalanceStatements(),
-                WorkFlowViewModel.TrialBalanceStatementsPackageDefinition);
-            dataStore.PutPackage(generalAccount.GetBalanceSheetStatements(),
-                WorkFlowViewModel.BalanceSheetStatementsPackageDefinition);
+            //dataStore.PutPackage(generalAccount.GetAllAccounts(), WorkFlowViewModel.AccountsPackageDefinition);
+            //dataStore.PutPackage(generalAccount.GetTrialBalanceStatements(),
+            //    WorkFlowViewModel.TrialBalanceStatementsPackageDefinition);
+            //dataStore.PutPackage(generalAccount.GetBalanceSheetStatements(),
+            //    WorkFlowViewModel.BalanceSheetStatementsPackageDefinition);
         }
     }
 }

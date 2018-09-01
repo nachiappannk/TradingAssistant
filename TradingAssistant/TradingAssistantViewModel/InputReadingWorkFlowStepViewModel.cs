@@ -43,7 +43,7 @@ namespace Nachiappan.TradingAssistantViewModel
             }
         }
 
-        public InputReadingWorkFlowStepViewModel(DataStore dataStore, Action goToInputStep, 
+        public InputReadingWorkFlowStepViewModel(DataStore dataStore, Action goToInputStep,
             Action goToStatementVerifyingWorkFlowStep, Action<WorkFlowStepViewModel> setCurrentStep)
         {
             _dataStore = dataStore;
@@ -55,10 +55,10 @@ namespace Nachiappan.TradingAssistantViewModel
             ViewInputStatementsCommand = new DelegateCommand(GoToViewStatements);
             ReadInput();
         }
-         
+
         private void GoToViewStatements()
         {
-            _setCurrentStep.Invoke(new InputViewingWorkFlowStepViewModel(_dataStore, 
+            _setCurrentStep.Invoke(new InputViewingWorkFlowStepViewModel(_dataStore,
                 () => _setCurrentStep.Invoke(this)));
         }
 
@@ -70,65 +70,67 @@ namespace Nachiappan.TradingAssistantViewModel
 
             var logger = new Logger();
 
-            var journalStatements = JournalReader.ReadJournalStatements
-                (input.TradeLogFileName, input.TradeLogSheetName, logger);
+            var gateway = new TradeLogGateway(input.TradeLogFileName);
 
-            var previousBalanceSheetStatements = BalanceSheetReader.ReadBalanceSheetStatements
-                (input.PreviousBalanceSheetFileName, input.PreviousBalanceSheetSheetName, logger);
-            
-            var trimmedJournalStatements = JournalStatementsCorrecter
-                .CorrectInvalidStatements(journalStatements, startDate, endDate, logger);
+            var tradeStatements = gateway.GetTradeStatements
+                (logger, input.TradeLogSheetName);
 
-            var trimmedBalanceSheetStatements = BalanceSheetStatementsCorrecter
-                .CorrectInvalidStatements(previousBalanceSheetStatements, logger);
+            //var previousBalanceSheetStatements = BalanceSheetReader.ReadBalanceSheetStatements
+            //    (input.PreviousBalanceSheetFileName, input.PreviousBalanceSheetSheetName, logger);
 
+            //var trimmedJournalStatements = JournalStatementsCorrecter
+            //    .CorrectInvalidStatements(tradeStatements, startDate, endDate, logger);
 
-            var accountDefinitionStatements = new AccountDefinitionGateway(input.AccountDefinitionFileName)
-                .GetAccountDefinitionStatements(logger, input.AccountDefintionSheetName);
+            //var trimmedBalanceSheetStatements = BalanceSheetStatementsCorrecter
+            //    .CorrectInvalidStatements(previousBalanceSheetStatements, logger);
 
 
-            accountDefinitionStatements.ForEach(x => x.Account = x.Account.Trim());
-
-            var displayableAccountNames = new Dictionary<string, string>();
-            foreach (var accountDefinitionStatement in accountDefinitionStatements)
-            {
-                var printableName = accountDefinitionStatement.Account.Trim();
-                var name = printableName.ToLower();
-                if (!displayableAccountNames.ContainsKey(name))
-                {
-                    displayableAccountNames.Add(name, printableName);
-                }
-
-            }
-
-            accountDefinitionStatements.ForEach(x => x.Account = x.Account.ToLower());
-            accountDefinitionStatements.ForEach(x =>
-            {
-                if (x.RecipientAccount != null)
-                {
-                    x.RecipientAccount = x.RecipientAccount.Trim().ToLower();
-                }
-            });
-                
-
-            var cleanedAccountDefinitionStatements =
-                AccountDefinitionStatementsCorrecter.CorrectInvalidStatements(accountDefinitionStatements,
-                    previousBalanceSheetStatements, journalStatements, logger);
+            //var accountDefinitionStatements = new AccountDefinitionGateway(input.AccountDefinitionFileName)
+            //    .GetAccountDefinitionStatements(logger, input.AccountDefintionSheetName);
 
 
+            //accountDefinitionStatements.ForEach(x => x.Account = x.Account.Trim());
 
-            
-            _dataStore.PutPackage(trimmedBalanceSheetStatements, WorkFlowViewModel.TrimmedPreviousBalanceSheetStatements);
-            _dataStore.PutPackage(journalStatements, WorkFlowViewModel.InputJournalStatementsPackageDefintion);
-            _dataStore.PutPackage(trimmedJournalStatements, WorkFlowViewModel.TrimmedJournalStatementsPackageDefintion);
-            _dataStore.PutPackage(previousBalanceSheetStatements, WorkFlowViewModel.PreviousBalanceSheetStatementsPackageDefinition);
-            _dataStore.PutPackage(accountDefinitionStatements, WorkFlowViewModel.InputAccountDefinitionPackageDefinition);
-            _dataStore.PutPackage(cleanedAccountDefinitionStatements, WorkFlowViewModel.CorrectedAccountDefinitionPackageDefinition);
-            _dataStore.PutPackage(displayableAccountNames, WorkFlowViewModel.DisplayableAccountNamesDictionaryPackageDefinition);
+            //var displayableAccountNames = new Dictionary<string, string>();
+            //foreach (var accountDefinitionStatement in accountDefinitionStatements)
+            //{
+            //    var printableName = accountDefinitionStatement.Account.Trim();
+            //    var name = printableName.ToLower();
+            //    if (!displayableAccountNames.ContainsKey(name))
+            //    {
+            //        displayableAccountNames.Add(name, printableName);
+            //    }
 
-            ValidateAccountingPeriod(startDate, endDate, logger);
-            ValidateJournalStatements(journalStatements, logger);
-            ValidateBalanceSheetStatements(previousBalanceSheetStatements, logger);
+            //}
+
+            //accountDefinitionStatements.ForEach(x => x.Account = x.Account.ToLower());
+            //accountDefinitionStatements.ForEach(x =>
+            //{
+            //    if (x.RecipientAccount != null)
+            //    {
+            //        x.RecipientAccount = x.RecipientAccount.Trim().ToLower();
+            //    }
+            //});
+
+
+            ////var cleanedAccountDefinitionStatements =
+            //    AccountDefinitionStatementsCorrecter.CorrectInvalidStatements(accountDefinitionStatements,
+            //        previousBalanceSheetStatements, tradeStatements, logger);
+
+
+
+
+            //_dataStore.PutPackage(trimmedBalanceSheetStatements, WorkFlowViewModel.TrimmedPreviousBalanceSheetStatements);
+            //_dataStore.PutPackage(tradeStatements, WorkFlowViewModel.InputJournalStatementsPackageDefintion);
+            //_dataStore.PutPackage(trimmedJournalStatements, WorkFlowViewModel.TrimmedJournalStatementsPackageDefintion);
+            //_dataStore.PutPackage(previousBalanceSheetStatements, WorkFlowViewModel.PreviousBalanceSheetStatementsPackageDefinition);
+            //_dataStore.PutPackage(accountDefinitionStatements, WorkFlowViewModel.InputAccountDefinitionPackageDefinition);
+            //_dataStore.PutPackage(cleanedAccountDefinitionStatements, WorkFlowViewModel.CorrectedAccountDefinitionPackageDefinition);
+            //_dataStore.PutPackage(displayableAccountNames, WorkFlowViewModel.DisplayableAccountNamesDictionaryPackageDefinition);
+
+            //ValidateAccountingPeriod(startDate, endDate, logger);
+            //ValidateJournalStatements(tradeStatements, logger);
+            //ValidateBalanceSheetStatements(previousBalanceSheetStatements, logger);
 
             logger.InformationList.Sort((a, b) =>
             {
@@ -180,11 +182,11 @@ namespace Nachiappan.TradingAssistantViewModel
             }
         }
 
-        private void ValidateAccountingPeriod(DateTime startDate, DateTime endDate,ILogger logger)
+        private void ValidateAccountingPeriod(DateTime startDate, DateTime endDate, ILogger logger)
         {
             if (startDate > endDate)
             {
-                logger.Log(MessageType.Error,"The accounting period start date is later than end date");
+                logger.Log(MessageType.Error, "The accounting period start date is later than end date");
             }
             else if ((endDate - startDate).TotalDays < 29)
             {
@@ -200,7 +202,7 @@ namespace Nachiappan.TradingAssistantViewModel
         public List<Information> InformationList = new List<Information>();
         public void Log(MessageType type, string message)
         {
-            if(type == MessageType.Warning)
+            if (type == MessageType.Warning)
                 InformationList.Add(Information.CreateWarning(message));
 
             if (type == MessageType.Error)
@@ -215,7 +217,7 @@ namespace Nachiappan.TradingAssistantViewModel
 
         public static Information CreateError(string message)
         {
-            return new Error() {Message = message};
+            return new Error() { Message = message };
         }
 
         public static Information CreateWarning(string message)

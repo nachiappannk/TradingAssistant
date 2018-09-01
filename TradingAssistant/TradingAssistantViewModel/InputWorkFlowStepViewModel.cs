@@ -17,17 +17,15 @@ namespace Nachiappan.TradingAssistantViewModel
             _goToNextStep = goToNextStep;
             Name = "Input";
 
-            JournalSelectorViewModel = new ExcelSheetSelectorViewModel {Title = "Please provide the Trade Log"};
-            //PreviousBalanceSheetSelectorViewModel =
-            //    new ExcelSheetSelectorViewModel {Title = "Please provide the previous period balance sheet"};
+            TradeLogSelectorViewModel = new ExcelSheetSelectorViewModel { Title = "Please provide the Trade Log" };
 
-            //AccountDefinitionViewModel = 
-            //    new ExcelSheetSelectorViewModel() { Title = "Please provide the account definition"};
+            OpenPositionsSelectorViewModel = new ExcelSheetSelectorViewModel { Title = "Please provide the Open position" };
 
+            CashLogSelectorViewModel = new ExcelSheetSelectorViewModel { Title = "Please provide the Cash log" };
 
-            JournalSelectorViewModel.ValidityChanged += RaiseCanExecuteChanged;
-            //PreviousBalanceSheetSelectorViewModel.ValidityChanged += RaiseCanExecuteChanged;
-            //AccountDefinitionViewModel.ValidityChanged += RaiseCanExecuteChanged;
+            TradeLogSelectorViewModel.ValidityChanged += RaiseCanExecuteChanged;
+            OpenPositionsSelectorViewModel.ValidityChanged += RaiseCanExecuteChanged;
+            CashLogSelectorViewModel.ValidityChanged += RaiseCanExecuteChanged;
 
             GoToPreviousCommand = new DelegateCommand(goToPreviousStep, () => true);
             GoToNextCommand = new DelegateCommand(GoToNext, CanGoToNext);
@@ -41,14 +39,29 @@ namespace Nachiappan.TradingAssistantViewModel
             {
                 var inputParameters = dataStore.GetPackage(WorkFlowViewModel.InputParametersPackageDefinition);
 
-                SetExcelInputParameters(JournalSelectorViewModel,
+                SetExcelInputParameters(TradeLogSelectorViewModel,
                     inputParameters.TradeLogFileName, inputParameters.TradeLogSheetName);
 
-                //SetExcelInputParameters(PreviousBalanceSheetSelectorViewModel,
-                //    inputParameters.PreviousBalanceSheetFileName, inputParameters.PreviousBalanceSheetSheetName);
+                IsPeriodAccounting = inputParameters.IsPeriodAccounting;
+                if(IsPeriodAccounting)
+                { 
+                    SetExcelInputParameters(OpenPositionsSelectorViewModel,
+                        inputParameters.TradeLogFileName, inputParameters.TradeLogSheetName);
 
-                //AccountingPeriodStartDate = inputParameters.AccountingPeriodStartDate;
-                //AccountingPeriodEndDate = inputParameters.AccountingPeriodEndDate;
+                    SetExcelInputParameters(CashLogSelectorViewModel,
+                        inputParameters.CashLogFileName, inputParameters.CashLogSheetName);
+                    if (inputParameters.AccountingPeriodStartDate.HasValue)
+                    {
+                        AccountingPeriodStartDate = inputParameters.AccountingPeriodStartDate.Value;
+                    }
+
+                    if (inputParameters.AccountingPeriodEndDate.HasValue)
+                    {
+                        AccountingPeriodEndDate = inputParameters.AccountingPeriodEndDate.Value;
+                    }
+
+                }
+
             }
         }
 
@@ -70,46 +83,92 @@ namespace Nachiappan.TradingAssistantViewModel
         {
             GoToNextCommand.RaiseCanExecuteChanged();
         }
+
+        public ExcelSheetSelectorViewModel TradeLogSelectorViewModel { get; set; }
+
+        public ExcelSheetSelectorViewModel OpenPositionsSelectorViewModel { get; set; }
+
+        public ExcelSheetSelectorViewModel CashLogSelectorViewModel { get; set; }
+
+        private DateTime _accountingPeriodStartDate;
+        public DateTime AccountingPeriodStartDate
+        {
+            get => _accountingPeriodStartDate;
+            set
+            {
+                if (_accountingPeriodStartDate != value)
+                {
+                    _accountingPeriodStartDate = value;
+                    FirePropertyChanged();
+                    RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+        private bool _isPeriodAccounting;
+
+        public bool IsPeriodAccounting
+        {
+            get => _isPeriodAccounting;
+            set
+            {
+                if (_isPeriodAccounting != value)
+                {
+                    _isPeriodAccounting = value;
+                    FirePropertyChanged();
+                    RaiseCanExecuteChanged();
+                }
+
+            }
+        }
+
+
+        private bool _isTraingAccountLedgerNeeded;
+
+        public bool IsTraingAccountLedgerNeeded
+        {
+            get => _isTraingAccountLedgerNeeded;
+            set
+            {
+                if (_isTraingAccountLedgerNeeded != value)
+                {
+                    _isTraingAccountLedgerNeeded = value;
+                    FirePropertyChanged();
+                    RaiseCanExecuteChanged();
+                }
+
+            }
+        }
+
+
+        private DateTime _accountingPeriodEndDate;
         
-        public ExcelSheetSelectorViewModel JournalSelectorViewModel { get; set; }
-        //public ExcelSheetSelectorViewModel PreviousBalanceSheetSelectorViewModel { get; set; }
-        //public ExcelSheetSelectorViewModel AccountDefinitionViewModel { get; set; }
 
-        //private DateTime? _accountingPeriodStartDate;
-        //public DateTime? AccountingPeriodStartDate
-        //{
-        //    get => _accountingPeriodStartDate;
-        //    set
-        //    {
-        //        if (_accountingPeriodStartDate != value)
-        //        {
-        //            _accountingPeriodStartDate = value;
-        //            RaiseCanExecuteChanged();
-        //        }
-        //    }
-        //}
-
-        //private DateTime? _accountingPeriodEndDate;
-        //public DateTime? AccountingPeriodEndDate
-        //{
-        //    get => _accountingPeriodEndDate;
-        //    set
-        //    {
-        //        if (_accountingPeriodEndDate != value)
-        //        {
-        //            _accountingPeriodEndDate = value;
-        //            RaiseCanExecuteChanged();
-        //        }
-        //    }
-        //}
+        public DateTime AccountingPeriodEndDate
+        {
+            get => _accountingPeriodEndDate;
+            set
+            {
+                if (_accountingPeriodEndDate != value)
+                {
+                    _accountingPeriodEndDate = value;
+                    RaiseCanExecuteChanged();
+                    FirePropertyChanged();
+                }
+            }
+        }
 
         bool CanGoToNext()
         {
-            if (!JournalSelectorViewModel.IsValid) return false;
-            //if (!PreviousBalanceSheetSelectorViewModel.IsValid) return false;
-            //if (!AccountDefinitionViewModel.IsValid) return false;
+            if (!TradeLogSelectorViewModel.IsValid) return false;
+            if (!IsPeriodAccounting) return true;
+
+            if (!OpenPositionsSelectorViewModel.IsValid) return false;
             //if (AccountingPeriodEndDate == null) return false;
             //if (AccountingPeriodStartDate == null) return false;
+            if (!IsTraingAccountLedgerNeeded) return true;
+
+            if (!CashLogSelectorViewModel.IsValid) return false;
             return true;
         }
 
@@ -118,19 +177,18 @@ namespace Nachiappan.TradingAssistantViewModel
 
             var input = new InputForTradeStatementComputation
             {
-                // ReSharper disable once PossibleInvalidOperationException
-                //AccountingPeriodEndDate = AccountingPeriodEndDate.Value,
-                //// ReSharper disable once PossibleInvalidOperationException
-                //AccountingPeriodStartDate = AccountingPeriodStartDate.Value,
-                //PreviousBalanceSheetFileName = PreviousBalanceSheetSelectorViewModel.InputFileName,
-                //PreviousBalanceSheetSheetName = PreviousBalanceSheetSelectorViewModel.SelectedSheet,
-                TradeLogFileName = JournalSelectorViewModel.InputFileName,
-                TradeLogSheetName = JournalSelectorViewModel.SelectedSheet,
-                //AccountDefinitionFileName = AccountDefinitionViewModel.InputFileName,
-                //AccountDefintionSheetName = AccountDefinitionViewModel.SelectedSheet,
+                TradeLogFileName = TradeLogSelectorViewModel.InputFileName,
+                TradeLogSheetName = TradeLogSelectorViewModel.SelectedSheet,
+                IsPeriodAccounting = IsPeriodAccounting,
+                CashLogSheetName = IsPeriodAccounting? CashLogSelectorViewModel.SelectedSheet : string.Empty,
+                CashLogFileName = IsPeriodAccounting ? CashLogSelectorViewModel.InputFileName : string.Empty,
+                OpenPositionFileName = IsPeriodAccounting ? OpenPositionsSelectorViewModel.InputFileName : string.Empty,
+                OpenPositionSheetName = IsPeriodAccounting ? OpenPositionsSelectorViewModel.SelectedSheet : string.Empty,
+                AccountingPeriodEndDate = AccountingPeriodEndDate,
+                AccountingPeriodStartDate = AccountingPeriodStartDate,
             };
 
-            _dataStore.PutPackage(input ,WorkFlowViewModel.InputParametersPackageDefinition);
+            _dataStore.PutPackage(input, WorkFlowViewModel.InputParametersPackageDefinition);
             _goToNextStep.Invoke();
         }
     }
