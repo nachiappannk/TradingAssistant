@@ -104,7 +104,6 @@ namespace Nachiappan.TradingAssistantViewModel
         }
     }
 
-
     public class Logger : ILogger
     {
 

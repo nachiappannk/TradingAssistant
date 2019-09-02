@@ -23,4 +23,9 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Statements
             };
         }
     }
+
+    public class AdjustedTradeStatement : TradeStatement
+    {
+        public string Reason { get; set; }
+    }
 }

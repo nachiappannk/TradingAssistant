@@ -53,7 +53,7 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
             }
         }
 
-        public List<TradeStatement> GetTradeStatements(ILogger logger, string sheetName)
+        public List<AdjustedTradeStatement> GetTradeStatements(ILogger logger, string sheetName)
         {
             using (ExcelReader reader = new ExcelReader(_inputFile, sheetName, logger))
             {
@@ -61,47 +61,33 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
 
                 var tradeStatements = reader.ReadAllLines(1, (r) =>
                 {
-                    if (!r.IsValueAvailable(SerialNumber)) return Tuple.Create(new TradeStatement(), false);
+                    if (!r.IsValueAvailable(SerialNumber)) return Tuple.Create(new AdjustedTradeStatement(), false);
                     var isSaleAvailable = r.IsValueAvailable(Sale);
                     var sale = isSaleAvailable ? r.ReadDouble(Sale) : 0;
                     var isCostAvailable = r.IsValueAvailable(Cost);
                     var cost = isCostAvailable ? r.ReadDouble(Cost) : 0;
-                    var name = r.ReadString(Name);
-                    var isCommand = name.Contains("##");
+                    var reason = string.Empty;
+                    var value = sale - cost;
                     if (isSaleAvailable && isCostAvailable)
                     {
                         if (!sale.IsZero() && !cost.IsZero())
                         {
-                            logger.Log(MessageType.Warning, $"In file {r.FileName}, ",
-                                $"in sheet {r.SheetName}, ",
-                                $"in line no. {r.LineNumber}, ",
-                                "both sale and cost is having non zero values. Taking the difference as value");
-                        }
-
-                    }
-                    if (!isCommand)
-                    {
-                        if (!isSaleAvailable && !isCostAvailable)
-                        {
-                            logger.Log(MessageType.Warning, $"In file {r.FileName}, ",
-                                $"in sheet {r.SheetName}, ",
-                                $"in line no. {r.LineNumber}, ",
-                                "both sale and cost is not mentioned. Taking the value as 0");
+                            if (sale > cost) reason = $"Both Sale and Cost has value. Setting Sale as {value}.";
+                            else reason = $"Both Sale and Cost has value. Setting Cost as {value * -1 }.";
                         }
                     }
-                    var tradeStatement = new TradeStatement()
+                    var tradeStatement = new AdjustedTradeStatement()
                     {
                         Date = r.ReadDate(Date),
-                        Name = name,
+                        Name = r.ReadString(Name),
                         TransactionTax = r.ReadString(TransactionTax),
                         TransactionDetail = r.ReadString(TransactionDetail),
                         Quanity = r.ReadDouble(Quantity),
-                        Value = sale - cost,
+                        Value = value,
+                        Reason = reason,
                     };
                     return Tuple.Create(tradeStatement, true);
                 }).ToList();
-
-
                 return tradeStatements.Where(x => x.Item2).Select(x => x.Item1).ToList();
             }
         }
