@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Nachiappan.TradingAssistantViewModel.Model;
 using Nachiappan.TradingAssistantViewModel.Model.Account;
+using Nachiappan.TradingAssistantViewModel.Model.ExcelGateway;
 using Nachiappan.TradingAssistantViewModel.Model.Statements;
 using Prism.Commands;
 
@@ -11,19 +12,51 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
 {
     public class StatementVerifyingWorkFlowStepViewModel : WorkFlowStepViewModel
     {
-        public List<DisplayableCorrectedTradeStatement> DisplayableCorrectedTradeStatements { get; set; }
+        private readonly DataStore _dataStore;
+        private List<DisplayableCorrectedTradeStatement> _displayableCorrectedTradeStatements;
+
+        public List<DisplayableCorrectedTradeStatement> DisplayableCorrectedTradeStatements
+        {
+            get => _displayableCorrectedTradeStatements;
+            set
+            {
+                _displayableCorrectedTradeStatements = value;
+                FirePropertyChanged();
+            }
+        }
+
+        public DelegateCommand ReadAgainCommand { get; set; }
 
         public StatementVerifyingWorkFlowStepViewModel(DataStore dataStore, Action goToPreviousStep, 
             Action goToNextStep)
         {
-            var tradeStatements = dataStore.GetPackage(WorkFlowViewModel.InputTradeStatementPackageDefinition);
-            tradeStatements = tradeStatements.Select(x => TradeStatementAdjuster.Adjust(x)).ToList();
-            DisplayableCorrectedTradeStatements = tradeStatements.Select(x => new DisplayableCorrectedTradeStatement(x)).ToList();
-            
+            _dataStore = dataStore;
+
+
             GoToPreviousCommand = new DelegateCommand(goToPreviousStep);
             GoToNextCommand = new DelegateCommand(goToNextStep);
+            ReadAgainCommand = new DelegateCommand(ReadInput);
+
             Name = "Verify Input/Output Statements";
-        }   
+            ReadInput();
+        }
+
+        private void ReadInput()
+        {
+            var input = _dataStore.GetPackage(WorkFlowViewModel.InputParametersPackageDefinition);
+
+            var logger = new Logger();
+
+            var gateway = new TradeLogGateway(input.TradeLogFileName);
+
+            var tradeStatements = gateway.GetTradeStatements
+                (logger, input.TradeLogSheetName);
+
+            _dataStore.PutPackage(tradeStatements, WorkFlowViewModel.InputTradeStatementPackageDefinition);
+
+            tradeStatements = tradeStatements.Select(x => TradeStatementAdjuster.Adjust(x)).ToList();
+            DisplayableCorrectedTradeStatements = tradeStatements.Select(x => new DisplayableCorrectedTradeStatement(x)).ToList();
+        }
     }
 
     public class TradeStatementAdjuster
