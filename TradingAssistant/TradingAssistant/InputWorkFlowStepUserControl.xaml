@@ -26,55 +26,7 @@
                 <TextBlock Text="Input" Style="{StaticResource HeadingText}" DockPanel.Dock="Top"/>
                 <tradingAssistant:ExcelSheetSelectorUserControl DockPanel.Dock="Top" Margin="0,20" 
                                                               DataContext="{Binding TradeLogSelectorViewModel}" />
-                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="0,20">
-                    <TextBlock Text="Please choose your style of accounting" 
-                               Height="24"
-                               Style="{StaticResource Level2HeadingText}"></TextBlock>
-                    <StackPanel  Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsPeriodAccounting}" Margin="2,0,0,0" Height="24"></CheckBox>
-                        <TextBlock Text="Period Accounting" Margin="10,0,0,0" Style="{StaticResource HintText}"></TextBlock>
-                    </StackPanel>
-                </StackPanel>
-
-
-                <DockPanel Margin="20,0,0,0" HorizontalAlignment="Stretch" LastChildFill="False" DockPanel.Dock="Top">
-                    <tradingAssistant:ExcelSheetSelectorUserControl DockPanel.Dock="Top" Margin="0,0" 
-                                                                DataContext="{Binding OpenPositionsSelectorViewModel }"/>
-                    <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="0,10">
-                        <TextBlock Style="{StaticResource Level2HeadingText}"
-                               Text="Please enter the accounting period"/>
-                        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="0,4">
-                            <TextBlock Text="Accounting Period Start " DockPanel.Dock="Left" Style="{StaticResource HintText}" VerticalAlignment="Center"/>
-                            <DatePicker SelectedDate="{Binding AccountingPeriodStartDate}" DockPanel.Dock="Left"  />
-                        </DockPanel>
-                        <DockPanel DockPanel.Dock="Top"  LastChildFill="False" Margin="0,4">
-                            <TextBlock Text="Accounting Period End  " DockPanel.Dock="Left" Style="{StaticResource HintText}" VerticalAlignment="Center"/>
-                            <DatePicker SelectedDate="{Binding AccountingPeriodEndDate}" DockPanel.Dock="Left"/>
-                        </DockPanel>
-                    </StackPanel>
-
-                    <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="0,10">
-                        <TextBlock Text="Please click check box if you like to generate the trading account ledger" 
-                                   Height="24"
-                                   Style="{StaticResource Level2HeadingText}"></TextBlock>
-                        <StackPanel  Orientation="Horizontal">
-                            <CheckBox Margin="2,0,0,0" Height="24" IsChecked="{Binding IsTraingAccountLedgerNeeded}"></CheckBox>
-                            <TextBlock Text="Is Trading Account ledger needed" Margin="10,0,0,0" Style="{StaticResource HintText}"></TextBlock>
-                        </StackPanel>
-                    </StackPanel>
-                    <DockPanel Margin="20,0,0,0" HorizontalAlignment="Stretch" LastChildFill="False" DockPanel.Dock="Top">
-                        <tradingAssistant:ExcelSheetSelectorUserControl DockPanel.Dock="Top" Margin="0,0" 
-                                                                DataContext="{Binding CashLogSelectorViewModel}" />
-                        <StackPanel Margin="0,10" Orientation="Horizontal" Height="24" DockPanel.Dock="Top">
-                            <TextBlock Text="Initial Captial" Style="{StaticResource Level2HeadingText}"></TextBlock>
-                            <TextBox Width="200" Margin="10,0,0,0" ></TextBox>
-                        </StackPanel>
-                    </DockPanel>
-
-                    <Grid></Grid>
-                </DockPanel>
             </DockPanel>
-
         </Border>
     </Grid>
 </UserControl>
