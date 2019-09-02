@@ -30,18 +30,48 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
     {
         public static AdjustedTradeStatement Adjust(AdjustedTradeStatement st)
         {
-            var name = st.Name; 
-            st.Name = AdjustName(name);
-            if (st.Name != name)
+            if (st.Name.Contains("##"))
             {
-                var reasonIncrement = $"'The input {name}' is adjusted as $'{st.Name}'.";
-                if (!string.IsNullOrEmpty(st.Reason)) st.Reason = st.Reason + " ";
-                st.Reason = st.Reason + reasonIncrement;
-            } 
+                if (st.Name.ToLower().StartsWith("##end##"))
+                {
+
+                }
+                else if (st.Name.ToLower().Contains("##split##"))
+                {
+
+                }
+                else
+                {
+                    st.AddReason("The command is not understood.");
+                }
+            }
+            else
+            {
+                AdjustName(st);
+                AdjustValue(st);
+                AdjustQuantity(st);
+            }
             return st;
         }
 
-        private static string AdjustName(string s)
+        private static void AdjustQuantity(AdjustedTradeStatement st)
+        {
+            if (st.Quanity.IsZero()) st.AddReason("Quantity is not mentioned as zero.");
+        }
+
+        private static void AdjustValue(AdjustedTradeStatement st)
+        {
+            if (st.Value.IsZero()) st.AddReason("Both cost and sale is zero. Please verify if this is a bonus Transaction.");
+        }
+
+        private static void AdjustName(AdjustedTradeStatement st)
+        {
+            var name = st.Name;
+            st.Name = GetCorrectedName(name);
+            if (st.Name != name) st.AddReason($"'The input {name}' is adjusted as $'{st.Name}'.");
+        }
+
+        private static string GetCorrectedName(string s)
         {
             var input = s;
             var output = input;

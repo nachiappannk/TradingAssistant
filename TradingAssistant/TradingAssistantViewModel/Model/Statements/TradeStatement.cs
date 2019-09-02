@@ -24,8 +24,23 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Statements
         }
     }
 
-    public class AdjustedTradeStatement : TradeStatement
+    public class AdjustedTradeStatement : TradeStatement, IHasReason
     {
         public string Reason { get; set; }
     }
+
+    public interface IHasReason
+    {
+        string Reason { get; set; }
+    }
+
+    public static class HasReasonExtentions
+    {
+        public static void AddReason(this IHasReason hasReason, string reason)
+        {
+            if (!string.IsNullOrEmpty(hasReason.Reason)) hasReason.Reason = hasReason + " ";
+            hasReason.Reason = hasReason + reason;
+        }
+    }
+
 }
