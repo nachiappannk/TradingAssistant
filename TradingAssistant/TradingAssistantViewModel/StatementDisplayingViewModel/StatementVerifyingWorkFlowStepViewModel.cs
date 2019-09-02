@@ -34,11 +34,21 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
             {
                 if (st.Name.ToLower().StartsWith("##end##"))
                 {
-
+                    var name = st.Name;
+                    var periodName = name.Replace("##end##","");
+                    if(string.IsNullOrEmpty(periodName)) st.AddReason("Period Name is not found =>##end##[periodname]");
+                    if(periodName.Length < 3) st.AddReason("Period name should be minium 3 characters");
                 }
                 else if (st.Name.ToLower().Contains("##split##"))
                 {
-
+                    var command = st.Name;
+                    var parts = command.Split(new[] {"##split##"}, StringSplitOptions.None);
+                    if(parts.Length != 2) st.AddReason("The split command should be =>[product]##split##[splitnumber]");
+                    var product = GetCorrectedName(parts[0]);
+                    if(product != parts[0])st.AddReason($"Product name is adjusted from {parts[0]} to {product}");
+                    double x;
+                    var isParsed = double.TryParse(parts[1], out x);
+                    if(!isParsed)st.AddReason("Having trouble parsing split number. The command will be ignored");
                 }
                 else
                 {
