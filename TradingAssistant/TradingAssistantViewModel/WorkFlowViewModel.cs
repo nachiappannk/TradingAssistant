@@ -75,30 +75,17 @@ namespace Nachiappan.TradingAssistantViewModel
 
         private void GoToInputStep()
         {
-            CurrentStep = new InputWorkFlowStepViewModel(_dataStore, GoToInputReadingStep, GoToAboutApplicationStep);
+            CurrentStep = new InputWorkFlowStepViewModel(_dataStore, GoToReadingAndVerifyingWorkFlowStep, GoToAboutApplicationStep);
         }
 
-        private void GoToInputReadingStep()
+        private void GoToReadingAndVerifyingWorkFlowStep()
         {
-            CurrentStep = new InputReadingWorkFlowStepViewModel(_dataStore, GoToInputStep, GoToStatementVerifyingWorkFlowStep, 
-                SetCurrentStep);
-        }
-
- 
-        private void SetCurrentStep(WorkFlowStepViewModel viewModel)
-        {
-            CurrentStep = viewModel;
-        }
-
-
-        private void GoToStatementVerifyingWorkFlowStep()
-        {
-            CurrentStep = new StatementVerifyingWorkFlowStepViewModel(_dataStore, GoToInputReadingStep, GoToPrintStatementWorkFlowStep);
+            CurrentStep = new StatementVerifyingWorkFlowStepViewModel(_dataStore, GoToReadingAndVerifyingWorkFlowStep, GoToPrintStatementWorkFlowStep);
         }
 
         private void GoToPrintStatementWorkFlowStep()
         {
-            CurrentStep = new PrintOutputWorkFlowStepViewModel(_dataStore, GoToStatementVerifyingWorkFlowStep);
+            CurrentStep = new PrintOutputWorkFlowStepViewModel(_dataStore, GoToReadingAndVerifyingWorkFlowStep);
         }
 
         [NotifyPropertyChangedInvocator]

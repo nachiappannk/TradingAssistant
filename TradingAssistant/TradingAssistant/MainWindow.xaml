@@ -17,9 +17,6 @@
                 <tradingAssistant:InputWorkFlowStepUserControl></tradingAssistant:InputWorkFlowStepUserControl>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type tradingAssistantViewModel:InputReadingWorkFlowStepViewModel}">
-                <tradingAssistant:InputReadingWorkFlowStepUserControl></tradingAssistant:InputReadingWorkFlowStepUserControl>
-            </DataTemplate>
             <DataTemplate DataType="{x:Type tradingAssistantViewModel:AboutApplicationWorkFlowStepViewModel}">
                 <tradingAssistant:AboutApplicationWorkFlowStepUserControl/>
             </DataTemplate>

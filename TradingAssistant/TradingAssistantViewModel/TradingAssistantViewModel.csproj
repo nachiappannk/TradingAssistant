@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutApplicationWorkFlowStepViewModel.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Model\ExcelGateway\AccountDefinitionGateway.cs" />
     <Compile Include="Model\ExcelGateway\AccountDefinitionStatementsCorrecter.cs" />
     <Compile Include="Model\ExcelGateway\TradeLogGateway.cs" />
