@@ -72,7 +72,6 @@
     <Compile Include="Model\Statements\IHasAccount.cs" />
     <Compile Include="Model\Statements\IHasRecipientAccount.cs" />
     <Compile Include="Model\Statements\TradeStatement.cs" />
-    <Compile Include="StatementDisplayingViewModel\DisplayableAccountDefintionStatement.cs" />
     <Compile Include="StatementDisplayingViewModel\DisplayableCorrectedAccountDefintionStatement.cs" />
     <Compile Include="StatementDisplayingViewModel\InputViewingWorkFlowStepViewModel.cs" />
     <Compile Include="Model\FinancialStatementsComputer.cs" />
@@ -110,7 +109,6 @@
     <Compile Include="Model\Statements\BalanceSheetStatement.cs" />
     <Compile Include="StatementDisplayingViewModel\CommonDefinition.cs" />
     <Compile Include="StatementDisplayingViewModel\DisplayableAccountStatement.cs" />
-    <Compile Include="StatementDisplayingViewModel\DisplayableBalanceSheetStatement.cs" />
     <Compile Include="StatementDisplayingViewModel\DisplayableJournalStatement.cs" />
     <Compile Include="StatementDisplayingViewModel\DisplayableTrialBalanceStatement.cs" />
     <Compile Include="StatementDisplayingViewModel\DisplayableTrimmedBalanceSheetStatement.cs" />
