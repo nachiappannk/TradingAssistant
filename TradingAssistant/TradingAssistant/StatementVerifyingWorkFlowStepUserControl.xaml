@@ -23,77 +23,19 @@
             <Button Style="{StaticResource FooterStripButton}" Content="Next" DockPanel.Dock="Right" Command="{Binding GoToNextCommand}"/>
         </DockPanel>
         <Grid Grid.Row="1">
-            <TabControl>
-                <TabControl.Resources>
-                    <Style x:Key="ReadOnlyFormatableDataGrid" TargetType="{x:Type tradingAssistant:FormatableDataGrid}">
-                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                        <Setter Property="VerticalAlignment" Value="Top"/>
-                        <Setter Property="IsReadOnly" Value="True"/>
-                        <Setter Property="ColumnWidth" Value="Auto"/>
-                        <Setter Property="Margin" Value="4"/>
-                        <Setter Property="AlternationCount" Value="2" />
-                    </Style>
-                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-                </TabControl.Resources>
-                <TabItem Header="Previous Balance Sheet">
-                    <tradingAssistant:FormatableDataGrid ItemsSource="{Binding PreviousBalanceSheetStatements}" 
+            <Grid.Resources>
+                <Style x:Key="ReadOnlyFormatableDataGrid" TargetType="{x:Type tradingAssistant:FormatableDataGrid}">
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="VerticalAlignment" Value="Top"/>
+                    <Setter Property="IsReadOnly" Value="True"/>
+                    <Setter Property="ColumnWidth" Value="Auto"/>
+                    <Setter Property="Margin" Value="4"/>
+                    <Setter Property="AlternationCount" Value="2" />
+                </Style>
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            </Grid.Resources>
+            <tradingAssistant:FormatableDataGrid ItemsSource="{Binding DisplayableCorrectedTradeStatements}" 
                                               Style="{StaticResource ReadOnlyFormatableDataGrid}"/>
-                </TabItem>
-
-                <TabItem Header="Journal">
-                    <tradingAssistant:FormatableDataGrid ItemsSource="{Binding JournalStatements}" 
-                                              Style="{StaticResource ReadOnlyFormatableDataGrid}"/>
-                </TabItem>
-
-                <TabItem Header="Account Definition">
-                    <tradingAssistant:FormatableDataGrid ItemsSource="{Binding AccountDefinitionStatements}" 
-                                              Style="{StaticResource ReadOnlyFormatableDataGrid}"/>
-                </TabItem>
-
-                <TabItem Header="Trial Balance">
-                    <tradingAssistant:FormatableDataGrid ItemsSource="{Binding TrialBalanceStatements}" 
-                                              Style="{StaticResource ReadOnlyFormatableDataGrid}"/>
-                </TabItem>
-
-                
-                <TabItem Header="Accounts">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                            <TextBlock Text="Please select the account to be viewed: " Style="{StaticResource HeadingText}"
-                                       VerticalAlignment="Center" Margin="0"/>
-                            <ComboBox ItemsSource="{Binding LedgerNames}" SelectedItem="{Binding SelectedLedgerName}"  
-                                      VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <DockPanel Grid.Row="1" DataContext="{Binding SelectedAccountViewModel}">
-                            <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="0,0,0,10">
-                                <TextBlock Text="{Binding AccountName}" Style="{StaticResource HeadingText}"/>
-                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                                    <TextBlock Text="Account Type :" Style="{StaticResource Level2HeadingText}"/>
-                                    <TextBlock Text="{Binding AccountType}" Style="{StaticResource Level2HeadingText}"/>
-                                </StackPanel>
-                                <TextBlock Text="{Binding OverAllMessage}" Style="{StaticResource NormalText}"/>
-                                <TextBlock Style="{StaticResource NormalText}"
-                                    Text="If you suspect the account type is wrongly choosen, please change it by going back"/>
-                            </StackPanel>
-                            <tradingAssistant:FormatableDataGrid ItemsSource="{Binding AccountStatements}" 
-                                                      Style="{StaticResource ReadOnlyFormatableDataGrid}"/>
-                        </DockPanel>
-                    </Grid>
-                </TabItem>
-
-                <TabItem Header="Balance Sheet">
-                    <tradingAssistant:FormatableDataGrid ItemsSource="{Binding BalanceSheetStatements}" 
-                                              Style="{StaticResource ReadOnlyFormatableDataGrid}"/>
-                </TabItem>
-
-            </TabControl>
         </Grid>    
-        
-        
-
     </Grid>
 </UserControl>

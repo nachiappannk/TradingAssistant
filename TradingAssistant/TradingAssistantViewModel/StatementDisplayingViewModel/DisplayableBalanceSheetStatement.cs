@@ -34,4 +34,6 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
         [DisplayName("Debit")]
         public double? Debit { get; set; }
     }
+    
+
 }
