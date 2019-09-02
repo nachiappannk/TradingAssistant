@@ -72,8 +72,8 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
                     {
                         if (!sale.IsZero() && !cost.IsZero())
                         {
-                            if (sale > cost) reason = $"Both Sale and Cost has value. Setting Sale as {value}.";
-                            else reason = $"Both Sale and Cost has value. Setting Cost as {value * -1 }.";
+                            if (sale > cost) reason = $"Both Sale(={sale}) and Cost(={cost}) has value. Setting Sale as {value}.";
+                            else reason = $"Both Sale(={sale}) and Cost(={cost}) has value. Setting Cost as {value * -1 }.";
                         }
                     }
                     var tradeStatement = new AdjustedTradeStatement()
