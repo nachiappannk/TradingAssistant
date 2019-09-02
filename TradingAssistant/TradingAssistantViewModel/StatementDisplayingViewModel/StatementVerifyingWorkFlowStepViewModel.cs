@@ -25,32 +25,32 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
             Action goToNextStep)
         {
 
-            FinancialStatementsComputer.ComputerFinanicalStatemments(dataStore);
+            //FinancialStatementsComputer.ComputerFinanicalStatemments(dataStore);
 
 
-            GoToPreviousCommand = new DelegateCommand(goToPreviousStep);
-            GoToNextCommand = new DelegateCommand(goToNextStep);
-            Name = "Verify Input/Output Statements";
+            //GoToPreviousCommand = new DelegateCommand(goToPreviousStep);
+            //GoToNextCommand = new DelegateCommand(goToNextStep);
+            //Name = "Verify Input/Output Statements";
 
-            PreviousBalanceSheetStatements = GetBalanceSheetStatements(dataStore, WorkFlowViewModel.PreviousBalanceSheetStatementsPackageDefinition);
-            BalanceSheetStatements = GetBalanceSheetStatements(dataStore, WorkFlowViewModel.BalanceSheetStatementsPackageDefinition);
+            //PreviousBalanceSheetStatements = GetBalanceSheetStatements(dataStore, WorkFlowViewModel.PreviousBalanceSheetStatementsPackageDefinition);
+            //BalanceSheetStatements = GetBalanceSheetStatements(dataStore, WorkFlowViewModel.BalanceSheetStatementsPackageDefinition);
 
-            JournalStatements = GetInputJournalStatement(dataStore);
-            TrialBalanceStatements = GetTrailBalanceStatements(dataStore);
+            //JournalStatements = GetInputJournalStatement(dataStore);
+            //TrialBalanceStatements = GetTrailBalanceStatements(dataStore);
 
-            var accoutDifinitionStatements =
-                dataStore.GetPackage(WorkFlowViewModel.InputAccountDefinitionPackageDefinition)
-                    .MakeAccountPrintable(dataStore, 
-                    WorkFlowViewModel.DisplayableAccountNamesDictionaryPackageDefinition)
-                .MakeRecipientAccountPrintable(dataStore,
-                WorkFlowViewModel.DisplayableAccountNamesDictionaryPackageDefinition);
-            AccountDefinitionStatements = accoutDifinitionStatements
-                .Select(x => new DisplayableAccountDefintionStatement(x)).ToList();
+            //var accoutDifinitionStatements =
+            //    dataStore.GetPackage(WorkFlowViewModel.InputAccountDefinitionPackageDefinition)
+            //        .MakeAccountPrintable(dataStore, 
+            //        WorkFlowViewModel.DisplayableAccountNamesDictionaryPackageDefinition)
+            //    .MakeRecipientAccountPrintable(dataStore,
+            //    WorkFlowViewModel.DisplayableAccountNamesDictionaryPackageDefinition);
+            //AccountDefinitionStatements = accoutDifinitionStatements
+            //    .Select(x => new DisplayableAccountDefintionStatement(x)).ToList();
 
-            _accounts = CreateAccountDictionary(dataStore);
+            //_accounts = CreateAccountDictionary(dataStore);
 
-            LedgerNames = _accounts.Select(x => x.Value.GetPrintableName()).ToList();
-            SelectedLedgerName = LedgerNames.ElementAt(0);
+            //LedgerNames = _accounts.Select(x => x.Value.GetPrintableName()).ToList();
+            //SelectedLedgerName = LedgerNames.ElementAt(0);
 
             
         }
