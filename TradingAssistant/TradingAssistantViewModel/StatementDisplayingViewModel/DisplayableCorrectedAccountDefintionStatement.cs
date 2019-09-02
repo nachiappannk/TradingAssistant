@@ -41,10 +41,13 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
 
         [DisplayFormat(DataFormatString = CommonDefinition.QuantityDisplayFormat)]
         public double Quanity { get; set; }
+
         [DisplayFormat(DataFormatString = CommonDefinition.ValueDisplayFormat)]
-        public double Credit { get; set; }
+        public double Cost { get; set; }
+
         [DisplayFormat(DataFormatString = CommonDefinition.ValueDisplayFormat)]
-        public double Debit { get; set; }
+        public double Sale { get; set; }
+
         public string Reason { get; set; }
 
         public DisplayableCorrectedTradeStatement(TradeStatement tradeStatement)
@@ -55,8 +58,8 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
             TransactionDetail = tradeStatement.TransactionDetail;
             TransactionTax = tradeStatement.TransactionTax;
             Quanity = tradeStatement.Quanity;
-            Debit = (tradeStatement.Value < 0) ? tradeStatement.Value * -1 : 0;
-            Credit = (tradeStatement.Value >= 0) ? tradeStatement.Value : 0;
+            Cost = (tradeStatement.Value < 0) ? tradeStatement.Value * -1 : 0;
+            Sale = (tradeStatement.Value >= 0) ? tradeStatement.Value : 0;
            
         }
 
