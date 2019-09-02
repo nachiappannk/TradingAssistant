@@ -38,8 +38,8 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Statements
     {
         public static void AddReason(this IHasReason hasReason, string reason)
         {
-            if (!string.IsNullOrEmpty(hasReason.Reason)) hasReason.Reason = hasReason + " ";
-            hasReason.Reason = hasReason + reason;
+            if (!string.IsNullOrEmpty(hasReason.Reason)) hasReason.Reason = hasReason.Reason + " ";
+            hasReason.Reason = hasReason.Reason + reason;
         }
     }
 

@@ -78,7 +78,8 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
         {
             var name = st.Name;
             st.Name = GetCorrectedName(name);
-            if (st.Name != name) st.AddReason($"'The input {name}' is adjusted as $'{st.Name}'.");
+            if (st.Name != name)
+                st.AddReason($"The input '{name}' is adjusted as $'{st.Name}'.");
         }
 
         private static string GetCorrectedName(string s)
