@@ -27,30 +27,25 @@ namespace Nachiappan.TradingAssistantViewModel
             _dataStore = dataStore;
             Name = "Save Output";
             GoToPreviousCommand = new DelegateCommand(goToPrevious);
-            GoToNextCommand = new DelegateCommand(CloseApplication);
+            GoToNextCommand = new DelegateCommand(() => { }, ()=>false);
             SaveOutputCommand = new DelegateCommand(SaveOutput);
             SaveOutputRequest = new InteractionRequest<FileSaveAsNotification>();
             
 
             
 
-            if (dataStore.IsPackageStored(WorkFlowViewModel.AccountPrintOptionsPackageDefinition))
-            {
-                AccountPrintOptions = dataStore.GetPackage(WorkFlowViewModel.AccountPrintOptionsPackageDefinition);
-            }
-            else
-            {
-                var accounts = dataStore.GetPackage(WorkFlowViewModel.AccountsPackageDefinition);
-                AccountPrintOptions =
-                    accounts.Select(x => new AccountPrintOption() { Name = x.GetPrintableName() }).ToList();
-                dataStore.PutPackage(AccountPrintOptions, WorkFlowViewModel.AccountPrintOptionsPackageDefinition);
+            //if (dataStore.IsPackageStored(WorkFlowViewModel.AccountPrintOptionsPackageDefinition))
+            //{
+            //    AccountPrintOptions = dataStore.GetPackage(WorkFlowViewModel.AccountPrintOptionsPackageDefinition);
+            //}
+            //else
+            //{
+            //    var accounts = dataStore.GetPackage(WorkFlowViewModel.AccountsPackageDefinition);
+            //    AccountPrintOptions =
+            //        accounts.Select(x => new AccountPrintOption() { Name = x.GetPrintableName() }).ToList();
+            //    dataStore.PutPackage(AccountPrintOptions, WorkFlowViewModel.AccountPrintOptionsPackageDefinition);
 
-            }
-        }
-
-        private void CloseApplication()
-        {
-            System.Windows.Application.Current.Shutdown();
+            //}
         }
 
         private void SaveOutput()
