@@ -21,8 +21,8 @@
                 <tradingAssistant:AboutApplicationWorkFlowStepUserControl/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type statementDisplayingViewModel1:StatementVerifyingWorkFlowStepViewModel}">
-                <tradingAssistant:StatementVerifyingWorkFlowStepUserControl/>
+            <DataTemplate DataType="{x:Type statementDisplayingViewModel1:StatementReadingAndVerifyingWorkFlowStepViewModel}">
+                <tradingAssistant:StatementReadingAndVerifyingWorkFlowStepUserControl/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type tradingAssistantViewModel:PrintOutputWorkFlowStepViewModel}">

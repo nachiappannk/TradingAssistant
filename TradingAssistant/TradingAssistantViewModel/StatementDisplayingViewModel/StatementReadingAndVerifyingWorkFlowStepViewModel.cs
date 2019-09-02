@@ -10,7 +10,7 @@ using Prism.Commands;
 
 namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
 {
-    public class StatementVerifyingWorkFlowStepViewModel : WorkFlowStepViewModel
+    public class StatementReadingAndVerifyingWorkFlowStepViewModel : WorkFlowStepViewModel
     {
         private readonly DataStore _dataStore;
         private List<DisplayableCorrectedTradeStatement> _displayableCorrectedTradeStatements;
@@ -27,7 +27,7 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
 
         public DelegateCommand ReadAgainCommand { get; set; }
 
-        public StatementVerifyingWorkFlowStepViewModel(DataStore dataStore, Action goToPreviousStep, 
+        public StatementReadingAndVerifyingWorkFlowStepViewModel(DataStore dataStore, Action goToPreviousStep, 
             Action goToNextStep)
         {
             _dataStore = dataStore;
@@ -37,7 +37,7 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
             GoToNextCommand = new DelegateCommand(goToNextStep);
             ReadAgainCommand = new DelegateCommand(ReadInput);
 
-            Name = "Verify Input/Output Statements";
+            Name = "Read And Verify Input";
             ReadInput();
         }
 

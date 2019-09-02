@@ -80,7 +80,7 @@ namespace Nachiappan.TradingAssistantViewModel
 
         private void GoToReadingAndVerifyingWorkFlowStep()
         {
-            CurrentStep = new StatementVerifyingWorkFlowStepViewModel(_dataStore, GoToReadingAndVerifyingWorkFlowStep, GoToPrintStatementWorkFlowStep);
+            CurrentStep = new StatementReadingAndVerifyingWorkFlowStepViewModel(_dataStore, GoToReadingAndVerifyingWorkFlowStep, GoToPrintStatementWorkFlowStep);
         }
 
         private void GoToPrintStatementWorkFlowStep()

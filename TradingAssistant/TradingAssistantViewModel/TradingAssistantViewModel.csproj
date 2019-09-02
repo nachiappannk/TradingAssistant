@@ -114,7 +114,7 @@
     <Compile Include="StatementDisplayingViewModel\DisplayableTrialBalanceStatement.cs" />
     <Compile Include="StatementDisplayingViewModel\DisplayableTrimmedBalanceSheetStatement.cs" />
     <Compile Include="StatementDisplayingViewModel\DisplayableTrimmedJournalStatement.cs" />
-    <Compile Include="StatementDisplayingViewModel\StatementVerifyingWorkFlowStepViewModel.cs" />
+    <Compile Include="StatementDisplayingViewModel\StatementReadingAndVerifyingWorkFlowStepViewModel.cs" />
     <Compile Include="Model\Statements\CorrectedJournalStatement.cs" />
     <Compile Include="Model\Statements\TrialBalanceStatement.cs" />
     <Compile Include="WorkFlowStepViewModel.cs" />

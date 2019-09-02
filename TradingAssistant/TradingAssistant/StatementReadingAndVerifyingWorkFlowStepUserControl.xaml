@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Nachiappan.TradingAssistant.StatementVerifyingWorkFlowStepUserControl"
+﻿<UserControl x:Class="Nachiappan.TradingAssistant.StatementReadingAndVerifyingWorkFlowStepUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
              xmlns:tradingAssistant="clr-namespace:Nachiappan.TradingAssistant"
              xmlns:statementDisplayingViewModel1="clr-namespace:Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel;assembly=TradingAssistantViewModel"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance statementDisplayingViewModel1:StatementVerifyingWorkFlowStepViewModel}"
+             d:DataContext="{d:DesignInstance statementDisplayingViewModel1:StatementReadingAndVerifyingWorkFlowStepViewModel}"
              d:DesignHeight="300" d:DesignWidth="700">
     <Grid>
 

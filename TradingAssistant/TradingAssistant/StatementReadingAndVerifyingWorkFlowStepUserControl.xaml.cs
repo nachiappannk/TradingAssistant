@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Nachiappan.TradingAssistant
 {
     /// <summary>
-    /// Interaction logic for StatementVerifyingWorkFlowStepUserControl.xaml
+    /// Interaction logic for StatementReadingAndVerifyingWorkFlowStepUserControl.xaml
     /// </summary>
-    public partial class StatementVerifyingWorkFlowStepUserControl : UserControl
+    public partial class StatementReadingAndVerifyingWorkFlowStepUserControl : UserControl
     {
-        public StatementVerifyingWorkFlowStepUserControl()
+        public StatementReadingAndVerifyingWorkFlowStepUserControl()
         {
             InitializeComponent();
         }

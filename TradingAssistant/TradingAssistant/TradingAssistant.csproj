@@ -85,8 +85,8 @@
       <DependentUpon>PrintOutputWorkFlowStepUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="SaveFileAction.cs" />
-    <Compile Include="StatementVerifyingWorkFlowStepUserControl.xaml.cs">
-      <DependentUpon>StatementVerifyingWorkFlowStepUserControl.xaml</DependentUpon>
+    <Compile Include="StatementReadingAndVerifyingWorkFlowStepUserControl.xaml.cs">
+      <DependentUpon>StatementReadingAndVerifyingWorkFlowStepUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkFlowStepUserControl.xaml.cs">
       <DependentUpon>WorkFlowStepUserControl.xaml</DependentUpon>
@@ -126,7 +126,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StatementVerifyingWorkFlowStepUserControl.xaml">
+    <Page Include="StatementReadingAndVerifyingWorkFlowStepUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
