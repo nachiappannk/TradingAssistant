@@ -73,6 +73,8 @@ namespace Nachiappan.TradingAssistantViewModel
                 (logger, input.TradeLogSheetName);
 
 
+            _dataStore.PutPackage(tradeStatements, WorkFlowViewModel.InputTradeStatementPackageDefinition);
+
             logger.InformationList.Sort((a, b) =>
             {
                 if (a.GetType() == b.GetType()) return 0;
