@@ -170,22 +170,10 @@ namespace Nachiappan.TradingAssistantViewModel
 
         private void WritePreviousBalanceSheet(string outputFileName)
         {
-            var balanceStatements = _dataStore.GetPackage(WorkFlowViewModel.PreviousBalanceSheetStatementsPackageDefinition)
-                .MakeAccountPrintable(_dataStore,
-                    WorkFlowViewModel.DisplayableAccountNamesDictionaryPackageDefinition);
-
-            BalanceSheetGateway gateway = new BalanceSheetGateway(outputFileName);
-            gateway.WriteBalanceSheet(balanceStatements, "PreviousBS");
         }
 
         private void WriteBalanceSheet(string outputFileName)
         {
-            var balanceStatements = _dataStore.GetPackage(WorkFlowViewModel.BalanceSheetStatementsPackageDefinition)
-                .MakeAccountPrintable(_dataStore,
-                    WorkFlowViewModel.DisplayableAccountNamesDictionaryPackageDefinition);
-            ;
-            BalanceSheetGateway gateway = new BalanceSheetGateway(outputFileName);
-            gateway.WriteBalanceSheet(balanceStatements, "BalanceSheet");
         }
 
 

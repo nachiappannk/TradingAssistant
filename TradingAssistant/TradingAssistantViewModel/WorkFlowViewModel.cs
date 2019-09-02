@@ -14,18 +14,11 @@ namespace Nachiappan.TradingAssistantViewModel
         public static readonly PackageDefinition<List<JournalStatement>> InputJournalStatementsPackageDefintion 
             = new PackageDefinition<List<JournalStatement>>(nameof(InputJournalStatementsPackageDefintion));
 
-        public static readonly PackageDefinition<List<CorrectedJournalStatement>> TrimmedJournalStatementsPackageDefintion
-            = new PackageDefinition<List<CorrectedJournalStatement>>(nameof(TrimmedJournalStatementsPackageDefintion));
-
+        
         public static readonly PackageDefinition<List<AccountDefintionStatement>> InputAccountDefinitionPackageDefinition
             = new PackageDefinition<List<AccountDefintionStatement>>(nameof(InputAccountDefinitionPackageDefinition));
 
-        public static readonly PackageDefinition<List<BalanceSheetStatement>> PreviousBalanceSheetStatementsPackageDefinition = 
-            new PackageDefinition<List<BalanceSheetStatement>>(nameof(PreviousBalanceSheetStatementsPackageDefinition));
-
-        public static readonly PackageDefinition<List<BalanceSheetStatement>> BalanceSheetStatementsPackageDefinition =
-            new PackageDefinition<List<BalanceSheetStatement>>(nameof(BalanceSheetStatementsPackageDefinition));
-
+        
         public static readonly PackageDefinition<InputForTradeStatementComputation> InputParametersPackageDefinition = 
             new PackageDefinition<InputForTradeStatementComputation>(nameof(InputParametersPackageDefinition));
 

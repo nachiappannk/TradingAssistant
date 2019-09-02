@@ -66,6 +66,8 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
                     var sale = isSaleAvailable ? r.ReadDouble(Sale) : 0;
                     var isCostAvailable = r.IsValueAvailable(Cost);
                     var cost = isCostAvailable ? r.ReadDouble(Cost) : 0;
+                    var name = r.ReadString(Name);
+                    var isCommand = name.Contains("##");
                     if (isSaleAvailable && isCostAvailable)
                     {
                         if (!sale.IsZero() && !cost.IsZero())
@@ -77,17 +79,20 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
                         }
 
                     }
-                    if (!isSaleAvailable && !isCostAvailable)
+                    if (!isCommand)
                     {
-                        logger.Log(MessageType.Warning, $"In file {r.FileName}, ",
-                            $"in sheet {r.SheetName}, ",
-                            $"in line no. {r.LineNumber}, ",
-                            "both sale and cost is not mentioned. Taking the value as 0");
+                        if (!isSaleAvailable && !isCostAvailable)
+                        {
+                            logger.Log(MessageType.Warning, $"In file {r.FileName}, ",
+                                $"in sheet {r.SheetName}, ",
+                                $"in line no. {r.LineNumber}, ",
+                                "both sale and cost is not mentioned. Taking the value as 0");
+                        }
                     }
                     var tradeStatement = new TradeStatement()
                     {
                         Date = r.ReadDate(Date),
-                        Name = r.ReadString(Name),
+                        Name = name,
                         TransactionTax = r.ReadString(TransactionTax),
                         TransactionDetail = r.ReadString(TransactionDetail),
                         Quanity = r.ReadDouble(Quantity),
