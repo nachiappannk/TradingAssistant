@@ -29,13 +29,6 @@
                 <tradingAssistant:PrintOutputWorkFlowStepUserControl/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type statementDisplayingViewModel1:InputViewingWorkFlowStepViewModel}">
-                <tradingAssistant:InputViewingWorkFlowStepUserControl/>
-            </DataTemplate>
-
-
-            
-
         </Grid.Resources>
         <ContentPresenter Content="{Binding CurrentStep}"/>
 
