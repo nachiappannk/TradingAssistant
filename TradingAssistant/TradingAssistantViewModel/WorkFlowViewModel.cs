@@ -43,10 +43,7 @@ namespace Nachiappan.TradingAssistantViewModel
             new PackageDefinition<Dictionary<string, string>>(nameof(DisplayableAccountNamesDictionaryPackageDefinition));
 
 
-        public static readonly PackageDefinition<List<AccountPrintOption>> AccountPrintOptionsPackageDefinition =
-            new PackageDefinition<List<AccountPrintOption>>(nameof(AccountPrintOptionsPackageDefinition));
-
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         private readonly DataStore _dataStore;
