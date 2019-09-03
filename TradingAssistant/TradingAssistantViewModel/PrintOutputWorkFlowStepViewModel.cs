@@ -8,6 +8,7 @@ using Nachiappan.TradingAssistantViewModel.Model.Account;
 using Nachiappan.TradingAssistantViewModel.Model.Excel;
 using Nachiappan.TradingAssistantViewModel.Model.ExcelGateway;
 using Nachiappan.TradingAssistantViewModel.Model.Statements;
+using Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel;
 using Prism.Commands;
 using Prism.Interactivity.InteractionRequest;
 
@@ -15,6 +16,8 @@ namespace Nachiappan.TradingAssistantViewModel
 {
     public class PrintOutputWorkFlowStepViewModel : WorkFlowStepViewModel
     {
+        public List<DisplayableJournalStatement> JournalStatements { get; set; }
+        
         private readonly DataStore _dataStore;
         public DelegateCommand SaveOutputCommand { get; set; }
 
@@ -31,21 +34,18 @@ namespace Nachiappan.TradingAssistantViewModel
             SaveOutputCommand = new DelegateCommand(SaveOutput);
             SaveOutputRequest = new InteractionRequest<FileSaveAsNotification>();
             
-
+            JournalStatements = new List<DisplayableJournalStatement>();
+            JournalStatements.Add(new DisplayableJournalStatement()
+            {
+                Account = "Test",
+                Credit = 4.4,
+                Date = new DateTime(2019,03,03),
+                Debit = 56.7,
+                Description = "SomeThing",
+                Tag = "My Tag",
+            });
             
-
-            //if (dataStore.IsPackageStored(WorkFlowViewModel.AccountPrintOptionsPackageDefinition))
-            //{
-            //    AccountPrintOptions = dataStore.GetPackage(WorkFlowViewModel.AccountPrintOptionsPackageDefinition);
-            //}
-            //else
-            //{
-            //    var accounts = dataStore.GetPackage(WorkFlowViewModel.AccountsPackageDefinition);
-            //    AccountPrintOptions =
-            //        accounts.Select(x => new AccountPrintOption() { Name = x.GetPrintableName() }).ToList();
-            //    dataStore.PutPackage(AccountPrintOptions, WorkFlowViewModel.AccountPrintOptionsPackageDefinition);
-
-            //}
+            
         }
 
         private void SaveOutput()

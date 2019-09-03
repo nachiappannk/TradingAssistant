@@ -29,6 +29,24 @@
             <Button Style="{StaticResource FooterStripButton}" Content="Next" DockPanel.Dock="Right" Command="{Binding GoToNextCommand}"/>
         </DockPanel>
         <Grid Grid.Row="1">
+            <TabControl>
+                <TabControl.Resources>
+                    <Style x:Key="ReadOnlyFormatableDataGrid" TargetType="{x:Type tradingAssistant:FormatableDataGrid}">
+                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                        <Setter Property="VerticalAlignment" Value="Top"/>
+                        <Setter Property="IsReadOnly" Value="True"/>
+                        <Setter Property="ColumnWidth" Value="Auto"/>
+                        <Setter Property="Margin" Value="4"/>
+                        <Setter Property="AlternationCount" Value="2" />
+                    </Style>
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                </TabControl.Resources>
+
+                <TabItem Header="Journal">
+                    <tradingAssistant:FormatableDataGrid ItemsSource="{Binding JournalStatements}" 
+                                              Style="{StaticResource ReadOnlyFormatableDataGrid}"/>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 </UserControl>
