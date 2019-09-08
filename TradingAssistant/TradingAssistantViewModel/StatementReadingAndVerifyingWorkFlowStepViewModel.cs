@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Nachiappan.TradingAssistantViewModel.Model;
 using Nachiappan.TradingAssistantViewModel.Model.ExcelGateway;
-using Nachiappan.TradingAssistantViewModel.Model.Statements;
+using Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel;
 using Prism.Commands;
 
-namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
+namespace Nachiappan.TradingAssistantViewModel
 {
     public class StatementReadingAndVerifyingWorkFlowStepViewModel : WorkFlowStepViewModel
     {

@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:tradingAssistant="clr-namespace:Nachiappan.TradingAssistant"
              xmlns:statementDisplayingViewModel1="clr-namespace:Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel;assembly=TradingAssistantViewModel"
+             xmlns:tradingAssistantViewModel="clr-namespace:Nachiappan.TradingAssistantViewModel;assembly=TradingAssistantViewModel"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance statementDisplayingViewModel1:StatementReadingAndVerifyingWorkFlowStepViewModel}"
+             d:DataContext="{d:DesignInstance tradingAssistantViewModel:StatementReadingAndVerifyingWorkFlowStepViewModel}"
              d:DesignHeight="300" d:DesignWidth="700">
     <Grid>
 

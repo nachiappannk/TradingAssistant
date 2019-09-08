@@ -89,7 +89,7 @@
     <Compile Include="Model\Excel\RowCellsReader.cs" />
     <Compile Include="StatementDisplayingViewModel\CommonDefinition.cs" />
     <Compile Include="StatementDisplayingViewModel\DisplayableJournalStatement.cs" />
-    <Compile Include="StatementDisplayingViewModel\StatementReadingAndVerifyingWorkFlowStepViewModel.cs" />
+    <Compile Include="StatementReadingAndVerifyingWorkFlowStepViewModel.cs" />
     <Compile Include="WorkFlowStepViewModel.cs" />
     <Compile Include="WorkFlowViewModel.cs" />
   </ItemGroup>
