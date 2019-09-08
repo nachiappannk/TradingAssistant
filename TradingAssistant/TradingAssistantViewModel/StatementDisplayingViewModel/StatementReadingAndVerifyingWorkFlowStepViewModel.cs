@@ -53,7 +53,7 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
             var recordedTradeEvents = gateway.GetTradeStatements(logger, input.TradeLogSheetName);
 
             var cleanedTradeEvents = cleaner.CleanTradeEvents(recordedTradeEvents);
-            DisplayableCorrectedTradeStatements = cleanedTradeEvents.Select(x => new DisplayableCleanedTradeEvent(x)).ToList();
+            DisplayableCorrectedTradeStatements = cleanedTradeEvents.Select((x, serial) => new DisplayableCleanedTradeEvent(x, serial + 1)).ToList();
         }
     }
 }

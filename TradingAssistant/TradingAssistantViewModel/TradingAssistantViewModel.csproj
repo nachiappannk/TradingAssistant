@@ -70,10 +70,12 @@
     <Compile Include="Model\ExcelGateway\AccountDefinitionStatementsCorrecter.cs" />
     <Compile Include="Model\ExcelGateway\TradeLogGateway.cs" />
     <Compile Include="Model\RecordedEventCleaner.cs" />
+    <Compile Include="Model\Statements\CleanedTradeEvent.cs" />
     <Compile Include="Model\Statements\ICanClone.cs" />
     <Compile Include="Model\Statements\IHasAccount.cs" />
     <Compile Include="Model\Statements\IHasRecipientAccount.cs" />
     <Compile Include="Model\Statements\RecordedTradeEvent.cs" />
+    <Compile Include="StatementDisplayingViewModel\DisplayableCleanedTradeEvent.cs" />
     <Compile Include="StatementDisplayingViewModel\DisplayableCorrectedAccountDefintionStatement.cs" />
     <Compile Include="StatementDisplayingViewModel\InputViewingWorkFlowStepViewModel.cs" />
     <Compile Include="Model\FinancialStatementsComputer.cs" />
