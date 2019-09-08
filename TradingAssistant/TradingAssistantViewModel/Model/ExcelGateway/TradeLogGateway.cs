@@ -53,7 +53,7 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
             }
         }
 
-        public List<AdjustedTradeStatement> GetTradeStatements(ILogger logger, string sheetName)
+        public List<RecordedTradeEvent> GetTradeStatements(ILogger logger, string sheetName)
         {
             using (ExcelReader reader = new ExcelReader(_inputFile, sheetName, logger))
             {
@@ -61,30 +61,18 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
 
                 var tradeStatements = reader.ReadAllLines(1, (r) =>
                 {
-                    if (!r.IsValueAvailable(SerialNumber)) return Tuple.Create(new AdjustedTradeStatement(), false);
-                    var isSaleAvailable = r.IsValueAvailable(Sale);
-                    var sale = isSaleAvailable ? r.ReadDouble(Sale) : 0;
-                    var isCostAvailable = r.IsValueAvailable(Cost);
-                    var cost = isCostAvailable ? r.ReadDouble(Cost) : 0;
-                    var reason = string.Empty;
-                    var value = sale - cost;
-                    if (isSaleAvailable && isCostAvailable)
+                    if (!r.IsValueAvailable(SerialNumber)) return Tuple.Create(new RecordedTradeEvent(), false);
+                    var tradeStatement = new RecordedTradeEvent()
                     {
-                        if (!sale.IsZero() && !cost.IsZero())
-                        {
-                            if (sale > cost) reason = $"Both Sale(={sale}) and Cost(={cost}) has value. Setting Sale as {value}.";
-                            else reason = $"Both Sale(={sale}) and Cost(={cost}) has value. Setting Cost as {value * -1 }.";
-                        }
-                    }
-                    var tradeStatement = new AdjustedTradeStatement()
-                    {
+                        SerialNumberString = r.ReadString(SerialNumber),
+                        SerialNumber = r.ReadInteger(SerialNumber),
                         Date = r.ReadDate(Date),
                         Name = r.ReadString(Name),
                         TransactionTax = r.ReadString(TransactionTax),
                         TransactionDetail = r.ReadString(TransactionDetail),
                         Quanity = r.ReadDouble(Quantity),
-                        Value = value,
-                        Reason = reason,
+                        CostValue = r.ReadDoubleIfAvailable(Cost),
+                        SaleValue = r.ReadDoubleIfAvailable(Sale),
                     };
                     return Tuple.Create(tradeStatement, true);
                 }).ToList();

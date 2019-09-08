@@ -12,8 +12,8 @@ namespace Nachiappan.TradingAssistantViewModel
     public class WorkFlowViewModel : INotifyPropertyChanged
     {
 
-        public static readonly PackageDefinition<List<AdjustedTradeStatement>> InputTradeStatementPackageDefinition
-            = new PackageDefinition<List<AdjustedTradeStatement>>(nameof(InputTradeStatementPackageDefinition));
+        public static readonly PackageDefinition<List<RecordedTradeEvent>> RecordedTradeEventsPackageDefinition
+            = new PackageDefinition<List<RecordedTradeEvent>>(nameof(RecordedTradeEventsPackageDefinition));
 
 
         public static readonly PackageDefinition<List<JournalStatement>> InputJournalStatementsPackageDefintion 

@@ -12,5 +12,6 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Excel
         double ReadDouble(int zeroBasedColumnIndex);
         string ReadString(int zeroBasedColumnIndex);
         bool IsValueAvailable(int zeroBasedColumnIndex);
+        double? ReadDoubleIfAvailable(int zeroBasedColumnIndex);
     }
 }

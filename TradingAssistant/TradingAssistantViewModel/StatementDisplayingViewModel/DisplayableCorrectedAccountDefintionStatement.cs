@@ -55,7 +55,7 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
             Date = recordedTradeEvent.Date;
             TransactionDetail = recordedTradeEvent.TransactionDetail;
             TransactionTax = recordedTradeEvent.TransactionTax;
-            Quanity = recordedTradeEvent.Quanity;
+            Quanity = recordedTradeEvent.Quanity.HasValue ? recordedTradeEvent.Value:0;
             Cost = (recordedTradeEvent.Value < 0) ? recordedTradeEvent.Value * -1 : 0;
             Sale = (recordedTradeEvent.Value >= 0) ? recordedTradeEvent.Value : 0;
             Name = recordedTradeEvent.Name;

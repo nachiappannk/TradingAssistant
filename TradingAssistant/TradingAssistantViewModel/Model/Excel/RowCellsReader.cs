@@ -137,6 +137,13 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Excel
             return value != null;
         }
 
+        public double? ReadDoubleIfAvailable(int zeroBasedColumnIndex)
+        {
+            var isAvailable = IsValueAvailable(zeroBasedColumnIndex);
+            if (!isAvailable) return null;
+            return ReadDouble(zeroBasedColumnIndex);
+        }
+
         public double ReadDouble(int zeroBasedColumnIndex)
         {
             var value = ReadCell(zeroBasedColumnIndex);

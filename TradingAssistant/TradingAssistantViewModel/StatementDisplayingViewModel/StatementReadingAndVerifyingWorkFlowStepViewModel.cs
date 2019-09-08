@@ -52,7 +52,7 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
             var tradeStatements = gateway.GetTradeStatements
                 (logger, input.TradeLogSheetName);
 
-            _dataStore.PutPackage(tradeStatements, WorkFlowViewModel.InputTradeStatementPackageDefinition);
+            _dataStore.PutPackage(tradeStatements, WorkFlowViewModel.RecordedTradeEventsPackageDefinition);
 
             tradeStatements = tradeStatements.Select(x => TradeStatementAdjuster.Adjust(x)).ToList();
             DisplayableCorrectedTradeStatements = tradeStatements.Select(x => new DisplayableCorrectedTradeStatement(x)).ToList();
@@ -99,7 +99,7 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
 
         private static void AdjustQuantity(AdjustedTradeStatement st)
         {
-            if (st.Quanity.IsZero()) st.AddReason("Quantity is not mentioned as zero.");
+            //if (st.Quanity.IsZero()) st.AddReason("Quantity is not mentioned as zero.");
         }
 
         private static void AdjustValue(AdjustedTradeStatement st)
