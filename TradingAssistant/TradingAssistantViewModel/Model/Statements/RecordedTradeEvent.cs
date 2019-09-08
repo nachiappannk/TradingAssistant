@@ -18,8 +18,22 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Statements
 
     public class CleanedTradeEvent : RecordedTradeEvent
     {
+        public CleanedTradeEvent(RecordedTradeEvent tradeEvent)
+        {
+            Reason = string.Empty;
+            IsValid = true;
+            IsAdjusted = false;
+
+            SerialNumber = tradeEvent.SerialNumber;
+            SerialNumberString = tradeEvent.SerialNumberString;
+            Date = tradeEvent.Date;
+
+
+        }
+
         public string Reason { get; set; }
         public bool IsValid { get; set; }
+        public bool IsAdjusted { get; set; }
     }
 
 

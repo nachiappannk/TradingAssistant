@@ -27,8 +27,10 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
         public string Reason { get; set; }
     }
 
-    public class DisplayableCorrectedTradeStatement
+    public class DisplayableCleanedTradeEvent
     {
+        public string SerialNumberString { get; set; }
+
         [DisplayFormat(DataFormatString = CommonDefinition.DateDisplayFormat)]
         public DateTime Date { get; set; }
         public string Name { get; set; }
@@ -40,26 +42,27 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
         public string TransactionTax { get; set; }
 
         [DisplayFormat(DataFormatString = CommonDefinition.QuantityDisplayFormat)]
-        public double Quanity { get; set; }
+        public double? Quanity { get; set; }
 
         [DisplayFormat(DataFormatString = CommonDefinition.ValueDisplayFormat)]
-        public double Cost { get; set; }
+        public double? Cost { get; set; }
 
         [DisplayFormat(DataFormatString = CommonDefinition.ValueDisplayFormat)]
-        public double Sale { get; set; }
+        public double? Sale { get; set; }
 
         public string Reason { get; set; }
 
-        public DisplayableCorrectedTradeStatement(AdjustedTradeStatement recordedTradeEvent)
+        public DisplayableCleanedTradeEvent(CleanedTradeEvent cleanedTradeEvent)
         {
-            Date = recordedTradeEvent.Date;
-            TransactionDetail = recordedTradeEvent.TransactionDetail;
-            TransactionTax = recordedTradeEvent.TransactionTax;
-            Quanity = recordedTradeEvent.Quanity.HasValue ? recordedTradeEvent.Value:0;
-            Cost = (recordedTradeEvent.Value < 0) ? recordedTradeEvent.Value * -1 : 0;
-            Sale = (recordedTradeEvent.Value >= 0) ? recordedTradeEvent.Value : 0;
-            Name = recordedTradeEvent.Name;
-            Reason = recordedTradeEvent.Reason;
+            SerialNumberString = cleanedTradeEvent.SerialNumberString;
+            Date = cleanedTradeEvent.Date;
+            TransactionDetail = cleanedTradeEvent.TransactionDetail;
+            TransactionTax = cleanedTradeEvent.TransactionTax;
+            Quanity = cleanedTradeEvent.Quanity;
+            Cost = cleanedTradeEvent.CostValue;
+            Sale = cleanedTradeEvent.SaleValue;
+            Name = cleanedTradeEvent.Name;
+            Reason = cleanedTradeEvent.Reason;
            
         }
     }

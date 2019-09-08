@@ -13,9 +13,9 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
     public class StatementReadingAndVerifyingWorkFlowStepViewModel : WorkFlowStepViewModel
     {
         private readonly DataStore _dataStore;
-        private List<DisplayableCorrectedTradeStatement> _displayableCorrectedTradeStatements;
+        private List<DisplayableCleanedTradeEvent> _displayableCorrectedTradeStatements;
 
-        public List<DisplayableCorrectedTradeStatement> DisplayableCorrectedTradeStatements
+        public List<DisplayableCleanedTradeEvent> DisplayableCorrectedTradeStatements
         {
             get => _displayableCorrectedTradeStatements;
             set
@@ -49,13 +49,10 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
 
             var gateway = new TradeLogGateway(input.TradeLogFileName);
 
-            var tradeStatements = gateway.GetTradeStatements
-                (logger, input.TradeLogSheetName);
+            var recordedTradeEvents = gateway.GetTradeStatements(logger, input.TradeLogSheetName);
 
-            _dataStore.PutPackage(tradeStatements, WorkFlowViewModel.RecordedTradeEventsPackageDefinition);
-
-            tradeStatements = tradeStatements.Select(x => TradeStatementAdjuster.Adjust(x)).ToList();
-            DisplayableCorrectedTradeStatements = tradeStatements.Select(x => new DisplayableCorrectedTradeStatement(x)).ToList();
+            var cleanedTradeEvents = recordedTradeEvents.Select(x => new CleanedTradeEvent(x)).ToList();
+            DisplayableCorrectedTradeStatements = cleanedTradeEvents.Select(x => new DisplayableCleanedTradeEvent(x)).ToList();
         }
     }
 
