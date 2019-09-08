@@ -92,12 +92,12 @@ namespace Nachiappan.TradingAssistantViewModel
     {
         Dictionary<string, string> _displayNames = new Dictionary<string, string>();
 
-        public StatementsGenerator(List<TradeStatement> statements)
+        public StatementsGenerator(List<RecordedTradeEvent> statements)
         {
             InitializeDisplayNames(statements);
         }
 
-        private void InitializeDisplayNames(List<TradeStatement> statements)
+        private void InitializeDisplayNames(List<RecordedTradeEvent> statements)
         {
             _displayNames = new Dictionary<string, string>();
             foreach (var tradeStatement in statements)
@@ -113,17 +113,17 @@ namespace Nachiappan.TradingAssistantViewModel
     {
         public string Name { get; set; }
         private List<GainStatement> GainStatements { get; set; }
-        private List<TradeStatement> HoldingStatements { get; set; }
+        private List<RecordedTradeEvent> HoldingStatements { get; set; }
 
         public Account()
         {
             GainStatements = new List<GainStatement>();
-            HoldingStatements = new List<TradeStatement>();
+            HoldingStatements = new List<RecordedTradeEvent>();
         }
 
-        public void AddStatement(TradeStatement tradeStatement)
+        public void AddStatement(RecordedTradeEvent recordedTradeEvent)
         {
-            if (tradeStatement.Value > 0)
+            if (recordedTradeEvent.Value > 0)
             {
 
             }

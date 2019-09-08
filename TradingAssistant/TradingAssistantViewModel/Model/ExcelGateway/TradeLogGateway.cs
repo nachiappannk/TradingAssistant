@@ -29,7 +29,7 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
             _inputFile = inputFile;
         }
 
-        public void WriteTradeLog(IList<TradeStatement> tradeStatement)
+        public void WriteTradeLog(IList<RecordedTradeEvent> tradeStatement)
         {
             using (ExcelSheetWriter writer = new ExcelSheetWriter(_inputFile, "TradeLog"))
             {

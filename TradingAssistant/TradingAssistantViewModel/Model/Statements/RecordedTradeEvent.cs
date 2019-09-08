@@ -2,18 +2,29 @@
 
 namespace Nachiappan.TradingAssistantViewModel.Model.Statements
 {
-    public class TradeStatement : IHasValue
+    public class RecordedTradeEvent : IHasValue
     {
+        public int SerialNumber { get; set; }
         public DateTime Date { get; set; }
         public string Name { get; set; }
         public string TransactionDetail { get; set; }
         public string TransactionTax { get; set; }
         public double Quanity { get; set; }
         public double Value { get; set; }
-        
+        public double CostValue { get; set; }
+        public double SaleValue { get; set; }
     }
 
-    public class AdjustedTradeStatement : TradeStatement, IHasReason
+    public class CleanedTradeEvent : RecordedTradeEvent
+    {
+        public string Reason { get; set; }
+        public bool IsValid { get; set; }
+    }
+
+
+
+
+    public class AdjustedTradeStatement : RecordedTradeEvent, IHasReason
     {
         public string Reason { get; set; }
     }

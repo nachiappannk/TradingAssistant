@@ -50,16 +50,16 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
 
         public string Reason { get; set; }
 
-        public DisplayableCorrectedTradeStatement(AdjustedTradeStatement tradeStatement)
+        public DisplayableCorrectedTradeStatement(AdjustedTradeStatement recordedTradeEvent)
         {
-            Date = tradeStatement.Date;
-            TransactionDetail = tradeStatement.TransactionDetail;
-            TransactionTax = tradeStatement.TransactionTax;
-            Quanity = tradeStatement.Quanity;
-            Cost = (tradeStatement.Value < 0) ? tradeStatement.Value * -1 : 0;
-            Sale = (tradeStatement.Value >= 0) ? tradeStatement.Value : 0;
-            Name = tradeStatement.Name;
-            Reason = tradeStatement.Reason;
+            Date = recordedTradeEvent.Date;
+            TransactionDetail = recordedTradeEvent.TransactionDetail;
+            TransactionTax = recordedTradeEvent.TransactionTax;
+            Quanity = recordedTradeEvent.Quanity;
+            Cost = (recordedTradeEvent.Value < 0) ? recordedTradeEvent.Value * -1 : 0;
+            Sale = (recordedTradeEvent.Value >= 0) ? recordedTradeEvent.Value : 0;
+            Name = recordedTradeEvent.Name;
+            Reason = recordedTradeEvent.Reason;
            
         }
     }
