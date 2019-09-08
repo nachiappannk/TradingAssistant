@@ -51,6 +51,7 @@ namespace Nachiappan.TradingAssistantViewModel.Model
             AdjustName(cleanedTradeEvent);
             AdjustQuantity(cleanedTradeEvent);
             AdjustValue(cleanedTradeEvent);
+            //TODO make multiline transaction details "TransactionDetail" as single line
             return cleanedTradeEvent;
         }
 
