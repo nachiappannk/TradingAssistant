@@ -15,14 +15,7 @@ namespace Nachiappan.TradingAssistantViewModel
         public static readonly PackageDefinition<List<RecordedTradeEvent>> RecordedTradeEventsPackageDefinition
             = new PackageDefinition<List<RecordedTradeEvent>>(nameof(RecordedTradeEventsPackageDefinition));
 
-
-        public static readonly PackageDefinition<List<JournalStatement>> InputJournalStatementsPackageDefintion 
-            = new PackageDefinition<List<JournalStatement>>(nameof(InputJournalStatementsPackageDefintion));
-
         
-        public static readonly PackageDefinition<List<AccountDefintionStatement>> InputAccountDefinitionPackageDefinition
-            = new PackageDefinition<List<AccountDefintionStatement>>(nameof(InputAccountDefinitionPackageDefinition));
-
         
         public static readonly PackageDefinition<InputForTradeStatementComputation> InputParametersPackageDefinition = 
             new PackageDefinition<InputForTradeStatementComputation>(nameof(InputParametersPackageDefinition));
@@ -33,9 +26,7 @@ namespace Nachiappan.TradingAssistantViewModel
         public static readonly PackageDefinition<List<IAccount>> AccountsPackageDefinition = 
             new PackageDefinition<List<IAccount>>(nameof(AccountsPackageDefinition));
 
-        public static readonly PackageDefinition<Dictionary<string,string>> DisplayableAccountNamesDictionaryPackageDefinition =
-            new PackageDefinition<Dictionary<string, string>>(nameof(DisplayableAccountNamesDictionaryPackageDefinition));
-
+        
 
         
         public event PropertyChangedEventHandler PropertyChanged;
