@@ -87,4 +87,81 @@ namespace Nachiappan.TradingAssistantViewModel
             gateway.WriteJournal(journalStatementsa);
         }       
     }
+
+    public class StatementsGenerator
+    {
+        Dictionary<string, string> _displayNames = new Dictionary<string, string>();
+
+        public StatementsGenerator(List<TradeStatement> statements)
+        {
+            InitializeDisplayNames(statements);
+        }
+
+        private void InitializeDisplayNames(List<TradeStatement> statements)
+        {
+            _displayNames = new Dictionary<string, string>();
+            foreach (var tradeStatement in statements)
+            {
+                var name = tradeStatement.Name;
+                var key = name.ToLower();
+                if (!_displayNames.ContainsKey(key)) _displayNames.Add(key, name);
+            }
+        }
+    }
+
+    public class Account
+    {
+        public string Name { get; set; }
+        private List<GainStatement> GainStatements { get; set; }
+        private List<TradeStatement> HoldingStatements { get; set; }
+
+        public Account()
+        {
+            GainStatements = new List<GainStatement>();
+            HoldingStatements = new List<TradeStatement>();
+        }
+
+        public void AddStatement(TradeStatement tradeStatement)
+        {
+            if (tradeStatement.Value > 0)
+            {
+
+            }
+        }
+
+        public List<HoldingStatement> Close(string periodName, double closingValue)
+        {
+            return new List<HoldingStatement>();
+        }
+
+
+    }
+
+    public class HoldingStatement
+    {
+        public string Name { get; set; }
+        public string PeriodName { get; set; }
+        public double Quanity { get; set; }
+        public DateTime Date { get; set; }
+        public string TransactionDetail { get; set; }
+        public string TransactionTax { get; set; }
+        public double Value { get; set; }
+        public double EffectiveCost { get; set; }
+        public double ClosingCost { get; set; }
+        public string Remark { get; set; }
+    }
+
+    public class GainStatement
+    {
+        public string Name { get; set; }
+        public double Quanity { get; set; }
+        public DateTime PurchaseDate { get; set; }
+        public string PurchaseTransactionDetail { get; set; }
+        public string PurchaseTransactionTax { get; set; }
+        public double PurchaseValue { get; set; }
+        public DateTime SaleDate { get; set; }
+        public string SaleTransactionDetail { get; set; }
+        public string SaleTransactionTax { get; set; }
+        public double SaleValue { get; set; }
+    }
 }
