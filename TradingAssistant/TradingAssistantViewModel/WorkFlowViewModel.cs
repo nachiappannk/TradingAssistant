@@ -33,12 +33,6 @@ namespace Nachiappan.TradingAssistantViewModel
         public static readonly PackageDefinition<List<IAccount>> AccountsPackageDefinition = 
             new PackageDefinition<List<IAccount>>(nameof(AccountsPackageDefinition));
 
-        public static readonly PackageDefinition<List<CorrectedBalanceSheetStatement>> TrimmedPreviousBalanceSheetStatements = 
-            new PackageDefinition<List<CorrectedBalanceSheetStatement>>(nameof(TrimmedPreviousBalanceSheetStatements));
-
-        public static readonly PackageDefinition<List<CorrectedAccountDefintionStatement>> CorrectedAccountDefinitionPackageDefinition = 
-            new PackageDefinition<List<CorrectedAccountDefintionStatement>>(nameof(CorrectedAccountDefinitionPackageDefinition));
-
         public static readonly PackageDefinition<Dictionary<string,string>> DisplayableAccountNamesDictionaryPackageDefinition =
             new PackageDefinition<Dictionary<string, string>>(nameof(DisplayableAccountNamesDictionaryPackageDefinition));
 
