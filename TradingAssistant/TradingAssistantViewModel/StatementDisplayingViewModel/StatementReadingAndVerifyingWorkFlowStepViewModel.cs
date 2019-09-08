@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Nachiappan.TradingAssistantViewModel.Model;
-using Nachiappan.TradingAssistantViewModel.Model.Account;
 using Nachiappan.TradingAssistantViewModel.Model.ExcelGateway;
 using Nachiappan.TradingAssistantViewModel.Model.Statements;
 using Prism.Commands;

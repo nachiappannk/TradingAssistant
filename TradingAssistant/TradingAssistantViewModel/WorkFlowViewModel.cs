@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Nachiappan.TradingAssistantViewModel.Annotations;
 using Nachiappan.TradingAssistantViewModel.Model;
-using Nachiappan.TradingAssistantViewModel.Model.Account;
 using Nachiappan.TradingAssistantViewModel.Model.Statements;
 using Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel;
 

@@ -1,6 +1,4 @@
-﻿using Nachiappan.TradingAssistantViewModel.Model.Account;
-
-namespace Nachiappan.TradingAssistantViewModel.Model
+﻿namespace Nachiappan.TradingAssistantViewModel.Model
 {
     public static class FinancialStatementsComputer
     {

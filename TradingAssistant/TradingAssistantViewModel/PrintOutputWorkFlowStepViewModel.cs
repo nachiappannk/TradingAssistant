@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Documents;
 using Nachiappan.TradingAssistantViewModel.Model;
-using Nachiappan.TradingAssistantViewModel.Model.Account;
 using Nachiappan.TradingAssistantViewModel.Model.Excel;
 using Nachiappan.TradingAssistantViewModel.Model.ExcelGateway;
 using Nachiappan.TradingAssistantViewModel.Model.Statements;
