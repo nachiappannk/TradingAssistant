@@ -69,8 +69,6 @@
     <Compile Include="Model\ExcelGateway\TradeLogGateway.cs" />
     <Compile Include="Model\RecordedEventCleaner.cs" />
     <Compile Include="Model\Statements\CleanedTradeEvent.cs" />
-    <Compile Include="Model\Statements\ICanClone.cs" />
-    <Compile Include="Model\Statements\IHasAccount.cs" />
     <Compile Include="Model\Statements\RecordedTradeEvent.cs" />
     <Compile Include="StatementDisplayingViewModel\DisplayableCleanedTradeEvent.cs" />
     <Compile Include="Model\FinancialStatementsComputer.cs" />
@@ -79,7 +77,6 @@
     <Compile Include="Model\Excel\ExcelSheetInfoProvider.cs" />
     <Compile Include="Model\Excel\ExcelSheetSelectorViewModel.cs" />
     <Compile Include="FileSaveAsNotification.cs" />
-    <Compile Include="Model\Statements\IHasValue.cs" />
     <Compile Include="Model\ILogger.cs" />
     <Compile Include="InputForTradeStatementComputation.cs" />
     <Compile Include="InputWorkFlowStepViewModel.cs" />

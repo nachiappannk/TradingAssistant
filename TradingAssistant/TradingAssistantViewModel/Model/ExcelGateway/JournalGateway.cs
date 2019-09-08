@@ -45,8 +45,6 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
                         j.Account,
                         j.Tag,
                         j.Description,
-                        j.GetCreditValueOrNull(),
-                        j.GetDebitValueOrNull(),
                     });
 
             }
@@ -68,24 +66,7 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
                     var credit = isCreditAvailable ? r.ReadDouble(Credit) : 0;
                     var isDebitAvailable = r.IsValueAvailable(Debit);
                     var debit = isDebitAvailable ? r.ReadDouble(Debit) : 0;
-                    if (isCreditAvailable && isDebitAvailable)
-                    {
-                        if (!credit.IsZero() && !debit.IsZero())
-                        {
-                            logger.Log(MessageType.Warning, $"In file {r.FileName}, " ,
-                                                                   $"in sheet {r.SheetName}, " ,
-                                                                   $"in line no. {r.LineNumber}, " ,
-                                                                   "both credit and debit is having non zero values. Taking the difference as value");
-                        }
-
-                    }
-                    if (!isCreditAvailable && !isDebitAvailable)
-                    {
-                        logger.Log(MessageType.Warning, $"In file {r.FileName}, " ,
-                                                               $"in sheet {r.SheetName}, " ,
-                                                               $"in line no. {r.LineNumber}, " ,
-                                                               "both credit and debit is not mentioned. Taking the value as 0");
-                    }
+                    
                     var journalStatement =  new JournalStatement()
                     {
                         Date = r.ReadDate(Date),

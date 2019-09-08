@@ -14,8 +14,6 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
             Date = x.Date;
             Description = x.Description;
             Tag = x.Tag;
-            Credit = x.GetCreditValueOrNull();
-            Debit = x.GetDebitValueOrNull();
         }
 
         public DisplayableJournalStatement()
