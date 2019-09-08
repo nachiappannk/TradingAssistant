@@ -101,7 +101,7 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
 
         private static void AdjustValue(AdjustedTradeStatement st)
         {
-            if (st.Value.IsZero()) st.AddReason("Both cost and sale is zero. Please verify if this is a bonus Transaction.");
+            //if (st.Value.IsZero()) st.AddReason("Both cost and sale is zero. Please verify if this is a bonus Transaction.");
         }
 
         private static void AdjustName(AdjustedTradeStatement st)

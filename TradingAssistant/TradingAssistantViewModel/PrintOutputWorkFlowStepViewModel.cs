@@ -123,10 +123,7 @@ namespace Nachiappan.TradingAssistantViewModel
 
         public void AddStatement(RecordedTradeEvent recordedTradeEvent)
         {
-            if (recordedTradeEvent.Value > 0)
-            {
-
-            }
+            
         }
 
         public List<HoldingStatement> Close(string periodName, double closingValue)

@@ -46,8 +46,8 @@ namespace Nachiappan.TradingAssistantViewModel.Model.ExcelGateway
                         j.Name,
                         j.TransactionDetail,
                         j.TransactionTax,
-                        j.GetCreditValueOrNull(),
-                        j.GetDebitValueOrNull(),
+                        //j.(),
+                        //j.GetDebitValueOrNull(),
                     });
 
             }

@@ -2,7 +2,7 @@
 
 namespace Nachiappan.TradingAssistantViewModel.Model.Statements
 {
-    public class RecordedTradeEvent : IHasValue
+    public class RecordedTradeEvent
     {
         public int SerialNumber { get; set; }
         public string SerialNumberString { get; set; }
@@ -11,7 +11,6 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Statements
         public string TransactionDetail { get; set; }
         public string TransactionTax { get; set; }
         public double? Quanity { get; set; }
-        public double Value { get; set; }
         public double? CostValue { get; set; }
         public double? SaleValue { get; set; }
     }
