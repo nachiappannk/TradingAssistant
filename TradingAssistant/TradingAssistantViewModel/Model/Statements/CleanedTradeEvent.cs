@@ -1,4 +1,7 @@
-﻿namespace Nachiappan.TradingAssistantViewModel.Model.Statements
+﻿using System;
+using OfficeOpenXml.FormulaParsing.Utilities;
+
+namespace Nachiappan.TradingAssistantViewModel.Model.Statements
 {
     public class CleanedTradeEvent : RecordedTradeEvent
     {
@@ -28,6 +31,40 @@
         {
             if (!string.IsNullOrEmpty(Reason)) Reason = Reason + " ";
             Reason = Reason + reason;
+        }
+
+        public PortfolioEvent GetPortfolioEvent()
+        {
+            //TODO multiple places where the threshold is defined (0.001)
+            if (!SaleValue.HasValue || SaleValue.Value < 0.001)
+            {
+                if (Quanity == null) throw new Exception("Some thing went wrong");
+                if (!CostValue.HasValue || CostValue.Value < 0.001) throw new Exception("Some thing went wrong");
+                return new PurchaseEvent()
+                {
+                    Date = this.Date,
+                    Name = this.Name,
+                    TransactionDetail = this.TransactionDetail,
+                    TransactionTax = this.TransactionTax,
+                    Quanity = Quanity.Value,
+                    CostValue = CostValue.Value,
+                };
+            }
+            if (!CostValue.HasValue || CostValue.Value < 0.001)
+            {
+                if (Quanity == null) throw new Exception("Some thing went wrong");
+                if (!SaleValue.HasValue || SaleValue.Value < 0.001) throw new Exception("Some thing went wrong");
+                return new SaleEvent()
+                {
+                    Date = this.Date,
+                    Name = this.Name,
+                    TransactionDetail = this.TransactionDetail,
+                    TransactionTax = this.TransactionTax,
+                    Quanity = Quanity.Value,
+                    SaleValue = SaleValue.Value,
+                };
+            }
+            throw new Exception("Something went wrong");
         }
     }
 }
