@@ -26,13 +26,17 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Statements
             SerialNumber = tradeEvent.SerialNumber;
             SerialNumberString = tradeEvent.SerialNumberString;
             Date = tradeEvent.Date;
-
-
         }
 
         public string Reason { get; set; }
         public bool IsValid { get; set; }
         public bool IsAdjusted { get; set; }
+
+        public void AddReason(string reason)
+        {
+            if (!string.IsNullOrEmpty(Reason)) Reason = Reason + " ";
+            Reason = Reason + reason;
+        }
     }
 
 

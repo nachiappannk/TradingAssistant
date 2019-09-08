@@ -69,6 +69,7 @@
     <Compile Include="Model\ExcelGateway\AccountDefinitionGateway.cs" />
     <Compile Include="Model\ExcelGateway\AccountDefinitionStatementsCorrecter.cs" />
     <Compile Include="Model\ExcelGateway\TradeLogGateway.cs" />
+    <Compile Include="Model\RecordedEventCleaner.cs" />
     <Compile Include="Model\Statements\ICanClone.cs" />
     <Compile Include="Model\Statements\IHasAccount.cs" />
     <Compile Include="Model\Statements\IHasRecipientAccount.cs" />

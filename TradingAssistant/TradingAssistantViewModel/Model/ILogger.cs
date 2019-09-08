@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
+using System.Windows.Documents;
 
 namespace Nachiappan.TradingAssistantViewModel.Model
 {
