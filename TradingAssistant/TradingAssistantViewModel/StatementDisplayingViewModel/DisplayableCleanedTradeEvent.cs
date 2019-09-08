@@ -7,9 +7,10 @@ namespace Nachiappan.TradingAssistantViewModel.StatementDisplayingViewModel
 {
     public class DisplayableCleanedTradeEvent
     {
+        [DisplayName("Serial Number (Computed)")]
         public int SerialNumber { get; set; }
 
-        [DisplayName("Serial Number (Actual)")]
+        [DisplayName("Serial Number (File)")]
         public string SerialNumberString { get; set; }
 
         [DisplayFormat(DataFormatString = CommonDefinition.DateDisplayFormat)]

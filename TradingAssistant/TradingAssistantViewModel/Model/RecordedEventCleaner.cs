@@ -60,7 +60,7 @@ namespace Nachiappan.TradingAssistantViewModel.Model
             var name = st.Name;
             st.Name = GetCorrectedName(name);
             if (st.Name != name)
-                st.AddReason($"The input '{name}' is adjusted as $'{st.Name}'.");
+                st.AddReason($"The input '{name}' is adjusted as '{st.Name}'.");
         }
 
         private void AdjustQuantity(CleanedTradeEvent st)
@@ -115,6 +115,17 @@ namespace Nachiappan.TradingAssistantViewModel.Model
                 return x;
             }).ToList();
             output = string.Join(" ", parts);
+
+            {
+                char[] letters = output.ToCharArray();
+                for (var i = 0; i < letters.Length - 1; i++)
+                {
+                    if (letters[i] == '&') letters[i + 1] = char.ToUpper(letters[i + 1]);
+                    output = new string(letters);
+                }
+            }
+            //TODO "M & M" has to be converted to "M&M"
+
             return output;
         }
 
