@@ -149,7 +149,6 @@ namespace Nachiappan.TradingAssistantViewModel
 
     public class GainStatement
     {
-        public string Name { get; set; }
         public double Quanity { get; set; }
         public DateTime PurchaseDate { get; set; }
         public string PurchaseTransactionDetail { get; set; }

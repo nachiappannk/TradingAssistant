@@ -35,11 +35,12 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Statements
 
         public PortfolioEvent GetPortfolioEvent()
         {
+            if(!IsValid) throw new Exception("Something wend wrong");
             //TODO multiple places where the threshold is defined (0.001)
             if (!SaleValue.HasValue || SaleValue.Value < 0.001)
             {
-                if (Quanity == null) throw new Exception("Some thing went wrong");
-                if (!CostValue.HasValue || CostValue.Value < 0.001) throw new Exception("Some thing went wrong");
+                if (Quanity == null) throw new Exception("Something went wrong");
+                if (!CostValue.HasValue || CostValue.Value < 0.001) throw new Exception("Something went wrong");
                 return new PurchaseEvent()
                 {
                     Date = this.Date,
@@ -52,8 +53,8 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Statements
             }
             if (!CostValue.HasValue || CostValue.Value < 0.001)
             {
-                if (Quanity == null) throw new Exception("Some thing went wrong");
-                if (!SaleValue.HasValue || SaleValue.Value < 0.001) throw new Exception("Some thing went wrong");
+                if (Quanity == null) throw new Exception("Something went wrong");
+                if (!SaleValue.HasValue || SaleValue.Value < 0.001) throw new Exception("Something went wrong");
                 return new SaleEvent()
                 {
                     Date = this.Date,

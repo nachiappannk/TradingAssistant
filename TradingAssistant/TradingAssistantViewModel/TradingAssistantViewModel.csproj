@@ -68,6 +68,8 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Model\ExcelGateway\TradeLogGateway.cs" />
     <Compile Include="Model\RecordedEventCleaner.cs" />
+    <Compile Include="Model\Statements\Asset.cs" />
+    <Compile Include="Model\Statements\AssetHoldingStatement.cs" />
     <Compile Include="Model\Statements\CleanedTradeEvent.cs" />
     <Compile Include="Model\Statements\RecordedTradeEvent.cs" />
     <Compile Include="Model\Statements\PortfolioEvent.cs" />
