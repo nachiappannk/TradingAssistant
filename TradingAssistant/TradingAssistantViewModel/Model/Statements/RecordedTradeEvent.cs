@@ -26,6 +26,13 @@ namespace Nachiappan.TradingAssistantViewModel.Model.Statements
             SerialNumber = tradeEvent.SerialNumber;
             SerialNumberString = tradeEvent.SerialNumberString;
             Date = tradeEvent.Date;
+            Name = tradeEvent.Name;
+            TransactionDetail = tradeEvent.TransactionDetail;
+            TransactionTax = tradeEvent.TransactionTax;
+            Quanity = tradeEvent.Quanity;
+            CostValue = tradeEvent.CostValue;
+            SaleValue = tradeEvent.SaleValue;
+
         }
 
         public string Reason { get; set; }
